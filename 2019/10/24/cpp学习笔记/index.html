@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>cpp学习笔记 | KJay的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="从C到CPP 感谢侯捷老师和郑莉老师侯捷老师cpp教程(B站)清华大学郑莉教授cpp教学  ##输入输出流  C++中，数据从一个对象到另一个对象的流动抽象为“流”。流在使用前要被建立，使用后要被删除。 数据的输入与输出是通过I&#x2F;O流来实现的，cin和cout是预定义的流类对象。cin用来处理标准输入，即键盘输入。cout用来处理标准输出，即屏幕输出。 从流中获取数据的操作称为提取操作，向流中添加">
+  <meta name="description" content="从C到CPP 感谢侯捷老师和郑莉老师侯捷老师cpp教程(B站)清华大学郑莉教授cpp教学  输入输出流 C++中，数据从一个对象到另一个对象的流动抽象为“流”。流在使用前要被建立，使用后要被删除。 数据的输入与输出是通过I&#x2F;O流来实现的，cin和cout是预定义的流类对象。cin用来处理标准输入，即键盘输入。cout用来处理标准输出，即屏幕输出。 从流中获取数据的操作称为提取操作，向流中添加数据的">
 <meta name="keywords" content="cpp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cpp学习笔记">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;24&#x2F;cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;index.html">
 <meta property="og:site_name" content="KJay的博客">
-<meta property="og:description" content="从C到CPP 感谢侯捷老师和郑莉老师侯捷老师cpp教程(B站)清华大学郑莉教授cpp教学  ##输入输出流  C++中，数据从一个对象到另一个对象的流动抽象为“流”。流在使用前要被建立，使用后要被删除。 数据的输入与输出是通过I&#x2F;O流来实现的，cin和cout是预定义的流类对象。cin用来处理标准输入，即键盘输入。cout用来处理标准输出，即屏幕输出。 从流中获取数据的操作称为提取操作，向流中添加">
+<meta property="og:description" content="从C到CPP 感谢侯捷老师和郑莉老师侯捷老师cpp教程(B站)清华大学郑莉教授cpp教学  输入输出流 C++中，数据从一个对象到另一个对象的流动抽象为“流”。流在使用前要被建立，使用后要被删除。 数据的输入与输出是通过I&#x2F;O流来实现的，cin和cout是预定义的流类对象。cin用来处理标准输入，即键盘输入。cout用来处理标准输出，即屏幕输出。 从流中获取数据的操作称为提取操作，向流中添加数据的">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1-1.png">
-<meta property="og:updated_time" content="2020-01-31T14:16:43.559Z">
+<meta property="og:updated_time" content="2020-02-03T08:48:56.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1-1.png">
   
@@ -164,11 +164,46 @@
         <h1 id="从C到CPP"><a href="#从C到CPP" class="headerlink" title="从C到CPP"></a>从C到CPP</h1><blockquote>
 <p>感谢侯捷老师和郑莉老师<br><a href="https://www.bilibili.com/video/av27135524?p=38" target="_blank" rel="noopener">侯捷老师cpp教程(B站)</a><br><a href="http://www.xuetangx.com/courses/course-v1:TsinghuaX+00740043X_2015_T2+sp/" target="_blank" rel="noopener">清华大学郑莉教授cpp教学</a></p>
 </blockquote>
-<p>##输入输出流</p>
-<ul>
+<h2 id="输入输出流"><a href="#输入输出流" class="headerlink" title="输入输出流"></a>输入输出流</h2><ul>
 <li>C++中，数据从一个对象到另一个对象的流动抽象为“流”。流在使用前要被建立，使用后要被删除。</li>
 <li>数据的输入与输出是通过I/O流来实现的，cin和cout是预定义的流类对象。cin用来处理标准输入，即键盘输入。cout用来处理标准输出，即屏幕输出。</li>
 <li>从流中获取数据的操作称为提取操作，向流中添加数据的操作称为插入操作。<br><img src="/assests/blogImg/cpp1-1.png" alt="cpp1-1"></li>
+</ul>
+<h2 id="新增的类型转换"><a href="#新增的类型转换" class="headerlink" title="新增的类型转换"></a>新增的类型转换</h2><ul>
+<li>类型转换操作符&lt;类型说明符&gt;(表达式)</li>
+<li>类型转换操作符可以是：<pre><code>const_cast、dynamic_cast、reinterpret_cast、static_cast</code></pre>目前只需要知道使用static_cast&lt;&gt;即可，相当于C中的显式类型转换</li>
+</ul>
+<h2 id="终于理解的随机数产生"><a href="#终于理解的随机数产生" class="headerlink" title="终于理解的随机数产生"></a>终于理解的随机数产生</h2><h3 id="rand"><a href="#rand" class="headerlink" title="rand"></a>rand</h3><ul>
+<li>函数原型：int rand(void)；</li>
+<li>所需头文件：<cstdlib></li>
+<li>功能和返回值：求出并返回一个伪随机数</li>
+</ul>
+<h3 id="srand"><a href="#srand" class="headerlink" title="srand"></a>srand</h3><ul>
+<li>函数原型：void srand(unsigned int seed);</li>
+<li>参数：seed产生随机数的种子</li>
+<li>所需头文件：<cstdlib></li>
+<li>功能：为使rand()产生一序列伪随机整数而设置起始点。使用1作为seed参数，可以重新初化rand()。通常可以使用当前时钟作为种子</li>
+</ul>
+<h2 id="头文件的正式写法（from-侯捷老师）"><a href="#头文件的正式写法（from-侯捷老师）" class="headerlink" title="头文件的正式写法（from 侯捷老师）"></a>头文件的正式写法（from 侯捷老师）</h2><ul>
+<li>防卫式声明，防止重复的include操作</li>
+<li>#ifndef …<br> #define …<br> …<br> #endif</li>
+</ul>
+<h2 id="inline-函数（内联函数）"><a href="#inline-函数（内联函数）" class="headerlink" title="inline 函数（内联函数）"></a>inline 函数（内联函数）</h2><ul>
+<li>编译时在调用处用函数体进行替换，节省了参数传递、控制转移等开销。</li>
+<li>适用于小型函数，无需转子函数实现</li>
+<li>在类中定义完成的函数自动成为内联函数，若函数太复杂编译器可能无法实现 </li>
+<li><strong>注意</strong><ul>
+<li>内联函数体内不能有循环语句和switch语句；</li>
+<li>内联函数的定义必须出现在内联函数第一次被调用之前；</li>
+<li>对内联函数不能进行异常接口声明。</li>
+</ul>
+</li>
+</ul>
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><ul>
+<li>方便函数调用时进行双向传递</li>
+<li>引用（&amp;）是标识符的别名，在创建时必须进行初始化指向已经存在的一个对象，初始化后不能指向其他对象！</li>
+<li>引用多用于形参</li>
+<li><strong>不可以建立定义引用的指针</strong></li>
 </ul>
 <hr>
 
