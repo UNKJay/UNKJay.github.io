@@ -184,7 +184,9 @@
 </ul>
 <h2 id="头文件的正式写法（from-侯捷老师）"><a href="#头文件的正式写法（from-侯捷老师）" class="headerlink" title="头文件的正式写法（from 侯捷老师）"></a>头文件的正式写法（from 侯捷老师）</h2><ul>
 <li>防卫式声明，防止重复的include操作</li>
-<li>#ifndef …<br>#define …<br>…<br>#endif</li>
+<li> <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> ...  </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ... </span></span><br><span class="line">...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
 <h2 id="inline-函数（内联函数）"><a href="#inline-函数（内联函数）" class="headerlink" title="inline 函数（内联函数）"></a>inline 函数（内联函数）</h2><ul>
 <li>编译时在调用处用函数体进行替换，节省了参数传递、控制转移等开销。</li>
