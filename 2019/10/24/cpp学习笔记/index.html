@@ -17,7 +17,7 @@
 <meta property="og:description" content="感谢侯捷老师和郑莉老师侯捷老师cpp课程郑莉老师cpp课程  从C到CPP输入输出流 C++ 中，数据从一个对象到另一个对象的流动抽象为“流”。流在使用前要被建立，使用后要被删除。 数据的输入与输出是通过I&#x2F;O流来实现的，cin和cout是预定义的流类对象。cin 用来处理标准输入，即键盘输入。cout 用来处理标准输出，即屏幕输出。 从流中获取数据的操作称为提取操作，向流中添加数据的操作称为插">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1-1.png">
-<meta property="og:updated_time" content="2020-02-07T14:21:01.154Z">
+<meta property="og:updated_time" content="2020-02-10T09:29:52.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1-1.png">
   
@@ -193,7 +193,7 @@
 <h2 id="inline-函数（内联函数）"><a href="#inline-函数（内联函数）" class="headerlink" title="inline 函数（内联函数）"></a>inline 函数（内联函数）</h2><ul>
 <li>编译时在调用处用函数体进行替换，节省了参数传递、控制转移等开销。</li>
 <li>适用于小型函数，无需转子函数实现</li>
-<li>在类中定义完成的函数自动成为内联函数，若函数太复杂编译器可能无法实现 </li>
+<li><strong>在类中定义完成的函数自动成为内联函数</strong>，若函数太复杂编译器可能无法实现 </li>
 <li><strong>注意</strong><ul>
 <li>内联函数体内不能有循环语句和switch语句；</li>
 <li>内联函数的定义必须出现在内联函数第一次被调用之前；</li>
@@ -206,6 +206,9 @@
 <li>引用（&amp;）是标识符的别名，在创建时必须进行初始化指向已经存在的一个对象，初始化后不能指向其他对象！</li>
 <li>引用多用于形参</li>
 <li><strong>不可以建立定义引用的指针</strong></li>
+</ul>
+<ul>
+<li>传值代价太大，最好传指针或引用，引用实则是用指针实现的</li>
 </ul>
 <h2 id="含有可变参数的函数"><a href="#含有可变参数的函数" class="headerlink" title="含有可变参数的函数"></a>含有可变参数的函数</h2><ul>
 <li>所有参数类型相同，使用<code>intializer_list</code>标准库对象<ul>
@@ -229,7 +232,68 @@
 <li>重载函数的形参必须不同:<strong>个数不同或类型不同</strong></li>
 <li><code>cmath</code> 头文件中提供系统函数，如 <code>sin()</code> <code>cos()</code></li>
 </ul>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><hr>
+<hr>
+<h1 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
+<li><p>设计时需要考虑的内容</p>
+<ul>
+<li>合法值</li>
+<li>函数和操作符号</li>
+<li>构造函数和析构函数</li>
+<li>初始化和赋值</li>
+<li>如何传参</li>
+<li>友元</li>
+</ul>
+</li>
+<li><p>语法定义</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">class</span> 类名称</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">                     公有成员（外部接口）</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">                      私有成员</span><br><span class="line"></span><br><span class="line">   <span class="keyword">protected</span>:</span><br><span class="line"></span><br><span class="line">                      保护型成员</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以在类定义时为数据成员提供初始值</li>
+<li><strong>如果紧跟在类名称的后面声明私有成员，则关键字private可以省略</strong></li>
+<li>内联函数</li>
+</ul>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><ul>
+<li>函数名与类名相同</li>
+<li>没有返回值，也没有 <code>return</code> 语句</li>
+<li>可以带形参，也可不带;  可以被重载; 可带默认参数值</li>
+<li><strong>在对象创建时被自动调用</strong></li>
+<li><strong>不带任何参数</strong> 或 <strong>参数均有默认值</strong>的构造函数作为默认构造函数，默认构造函数建议写</li>
+<li>可以使用关键字 <code>=default</code> 使编译器生成隐含构造函数</li>
+<li><strong>委托构造函数</strong>使用其他构造函数实现，在参数列表中调用即可</li>
+<li>复制构造函数：使用已存在对象初始化新对象<ul>
+<li>形参为本类的对象引用，多为 <code>const</code></li>
+<li>复制构造的另外两个时机： 形实结合、函数返回值为对象</li>
+<li>如果不希望对象被复制构造，在 C++11 标准中使用 <code>=delete</code> 指示即可</li>
+<li><strong>如果对象在声明的同时将另一个已存在的对象赋给它，就会调用复制构造函数；如果对象已经存在了，然后再将另一个已存在的对象赋给它，调用的就是重载赋值运算符</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h2><ul>
+<li>在对象的生存期结束的时刻系统自动调用它，然后再释放此对象所属的空间</li>
+<li>如果程序中未声明析构函数，编译器将自动产生一个默认的析构函数，其函数体为空</li>
+<li>~类名(); 无参数表; 无返回值类型</li>
+</ul>
+<h2 id="类的组合"><a href="#类的组合" class="headerlink" title="类的组合"></a>类的组合</h2><ul>
+<li>类中的成员是另一个类的对象</li>
+<li>组合类不能访问部件类的 <code>private</code> 成员，因此构造函数的参数表应包含部件类的构造函数所需要的参数</li>
+<li><strong>初始化次序</strong><ul>
+<li>首先对初始化列表中的成员进行初始化，此时<strong>顺序不是初始化列表中的顺序，而是成员在类体中定义的顺序</strong></li>
+<li>初始化列表中未出现的成员对象，调用用默认构造函数（即无形参的）初始化，<strong>此时可看出默认构造函数的重要性</strong></li>
+<li>处理完初始化列表之后，再执行构造函数的函数体</li>
+</ul>
+</li>
+</ul>
+<h2 id="前向引用声明"><a href="#前向引用声明" class="headerlink" title="前向引用声明"></a>前向引用声明</h2><ul>
+<li>类似函数相互引用，可先声明后定义</li>
+<li>在提供一个完整的类声明之前，不能声明该类的对象，也不能在内联成员函数中使用该类的对象</li>
+<li><strong>当使用前向引用声明时，只能使用被声明的符号，而不能涉及类的任何细节</strong></li>
+</ul>
+<h2 id="const-成员函数"><a href="#const-成员函数" class="headerlink" title="const 成员函数"></a>const 成员函数</h2><ul>
+<li>所有不会修改成员变量的函数都应该加 <code>const</code> 修饰，在函数名后加！</li>
+</ul>
+<hr>
 
       
 
@@ -462,7 +526,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,7 +538,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+                <a href="javascript:void(0)" class="js-tag color4">DataStructure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -483,14 +555,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DataStructure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
             
             <div class="clearfix"></div>
