@@ -17,7 +17,7 @@
 <meta property="og:description" content="感谢侯捷老师和郑莉老师侯捷老师cpp课程郑莉老师cpp课程  从C到CPP输入输出流 C++ 中，数据从一个对象到另一个对象的流动抽象为“流”。流在使用前要被建立，使用后要被删除。 数据的输入与输出是通过I&#x2F;O流来实现的，cin和cout是预定义的流类对象。cin 用来处理标准输入，即键盘输入。cout 用来处理标准输出，即屏幕输出。 从流中获取数据的操作称为提取操作，向流中添加数据的操作称为插">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1-1.png">
-<meta property="og:updated_time" content="2020-02-10T15:29:43.066Z">
+<meta property="og:updated_time" content="2020-02-11T08:32:00.838Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1-1.png">
   
@@ -169,6 +169,12 @@
 <li>数据的输入与输出是通过I/O流来实现的，cin和cout是预定义的流类对象。cin 用来处理标准输入，即键盘输入。cout 用来处理标准输出，即屏幕输出。</li>
 <li>从流中获取数据的操作称为提取操作，向流中添加数据的操作称为插入操作。<br><img src="/assests/blogImg/cpp1-1.png" alt="cpp1-1"></li>
 </ul>
+<ul>
+<li><strong>该图中设置浮点数的小数位数函数出现错误，应为 <code>setprecision</code> , 头文件为 <code>&lt;iomainip&gt;</code> , 需要配合 <code>fixed</code> 实现</strong></li>
+<li>如<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;fixed&lt;&lt;setprecision(<span class="number">4</span>)&lt;&lt;<span class="number">123.23343432</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//123.2334, 不加 fixed 输出为 123.2</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
 <h2 id="新增的类型转换"><a href="#新增的类型转换" class="headerlink" title="新增的类型转换"></a>新增的类型转换</h2><ul>
 <li>C 语言类型转换 (int) a, int(a)</li>
 </ul>
@@ -304,8 +310,41 @@
 <li>可以指定底层类型</li>
 <li><strong>枚举类型中整数值不能直接赋值给枚举类型，但是枚举类型可以给整数类型赋值</strong></li>
 </ul>
-<h2 id="const-成员函数"><a href="#const-成员函数" class="headerlink" title="const 成员函数"></a>const 成员函数</h2><ul>
-<li>所有不会修改成员变量的函数都应该加 <code>const</code> 修饰，在函数名后加！</li>
+<hr>
+<h1 id="数据的共享与保护"><a href="#数据的共享与保护" class="headerlink" title="数据的共享与保护"></a>数据的共享与保护</h1><h2 id="作用域与可见性"><a href="#作用域与可见性" class="headerlink" title="作用域与可见性"></a>作用域与可见性</h2><ul>
+<li>对于两个嵌套的作用域，如果在内层作用域内声明了与外层作用域中同名的标识符，则外层作用域的标识符在内层不可见</li>
+<li><strong>静态变量的初始化只进行一次</strong></li>
+</ul>
+<h2 id="类的静态成员"><a href="#类的静态成员" class="headerlink" title="类的静态成员"></a>类的静态成员</h2><ul>
+<li>用关键字 <code>static</code> 声明</li>
+<li><strong>为该类的所有对象共享</strong>，静态数据成员具有静态生存期</li>
+<li><strong>必须在类外定义和初始化，用(::)来指明所属的类</strong></li>
+<li>静态函数成员一般处理静态数据成员，<strong>外部访问类的静态成员能直接通过类名来访问</strong></li>
+<li>类的静态成员函数无法直接访问普通数据成员,可以间接访问</li>
+<li><strong>在类外初始化时不带关键字</strong></li>
+</ul>
+<h2 id="类的友元"><a href="#类的友元" class="headerlink" title="类的友元"></a>类的友元</h2><ul>
+<li>通过将一个模块声明为另一个模块的友元，一个模块能够引用到另一个模块中本是被隐藏的信息</li>
+<li>可以使用<strong>友元函数</strong>和<strong>友元类</strong></li>
+<li>访问对象中的成员必须通过对象名，得告诉函数访问的是哪个对象</li>
+<li><strong>类的友元关系是单向的</strong></li>
+</ul>
+<h2 id="const-成员"><a href="#const-成员" class="headerlink" title="const 成员"></a>const 成员</h2><ul>
+<li><code>const</code> 定义常对象必须进行初始化</li>
+<li><code>const</code> 还可区分重载函数</li>
+<li><strong>常数据成员只能在初始化列表中进行初始化</strong></li>
+<li>所有不会修改成员变量的函数都应该加 <code>const</code> 修饰，在函数名后加！由常对象调用</li>
+<li>常引用相当于只读的引用</li>
+<li>常数据成员可以在类定义的时候进行初始化</li>
+</ul>
+<h2 id="多文件结构和预编译"><a href="#多文件结构和预编译" class="headerlink" title="多文件结构和预编译"></a>多文件结构和预编译</h2><ul>
+<li>一般的文件组织结构如下<ul>
+<li>类声明文件（ .h 文件）</li>
+<li>类实现文件（ .cpp 文件）</li>
+<li>类的使用文件（ main() 所在的 .cpp 文件）</li>
+</ul>
+</li>
+<li>自己定义的头文件带后缀 h ; 使用双引号</li>
 </ul>
 <hr>
 
@@ -540,7 +579,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,11 +587,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,11 +603,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
             
             <div class="clearfix"></div>
