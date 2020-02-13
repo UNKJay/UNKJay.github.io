@@ -17,7 +17,7 @@
 <meta property="og:description" content="感谢侯捷老师和郑莉老师侯捷老师cpp课程郑莉老师cpp课程  从C到CPP输入输出流 C++ 中，数据从一个对象到另一个对象的流动抽象为“流”。流在使用前要被建立，使用后要被删除。 数据的输入与输出是通过I&#x2F;O流来实现的，cin和cout是预定义的流类对象。cin 用来处理标准输入，即键盘输入。cout 用来处理标准输出，即屏幕输出。 从流中获取数据的操作称为提取操作，向流中添加数据的操作称为插">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1-1.png">
-<meta property="og:updated_time" content="2020-02-11T14:44:09.638Z">
+<meta property="og:updated_time" content="2020-02-13T08:35:37.749Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1-1.png">
   
@@ -241,6 +241,14 @@
 <li>重载函数的形参必须不同:<strong>个数不同或类型不同</strong></li>
 <li><code>cmath</code> 头文件中提供系统函数，如 <code>sin()</code> <code>cos()</code></li>
 </ul>
+<ul>
+<li>对一个小数的常用操作<ul>
+<li>四舍五入： <code>floor(x+0.5)</code></li>
+<li>保留两位小数： <code>floor(x*100+0.5)/100</code></li>
+<li><code>ceil()</code> 为向上取整函数</li>
+</ul>
+</li>
+</ul>
 <hr>
 <h1 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
 <li><p>设计时需要考虑的内容</p>
@@ -310,7 +318,7 @@
 <li>可以指定底层类型</li>
 <li><strong>枚举类型中整数值不能直接赋值给枚举类型，但是枚举类型可以给整数类型赋值</strong></li>
 </ul>
-<hr>
+<p>—函数</p>
 <h1 id="数据的共享与保护"><a href="#数据的共享与保护" class="headerlink" title="数据的共享与保护"></a>数据的共享与保护</h1><h2 id="作用域与可见性"><a href="#作用域与可见性" class="headerlink" title="作用域与可见性"></a>作用域与可见性</h2><ul>
 <li>对于两个嵌套的作用域，如果在内层作用域内声明了与外层作用域中同名的标识符，则外层作用域的标识符在内层不可见</li>
 <li><strong>静态变量的初始化只进行一次</strong></li>
@@ -330,14 +338,18 @@
 <li><strong>类的友元关系是单向的</strong></li>
 </ul>
 <h2 id="const-成员"><a href="#const-成员" class="headerlink" title="const 成员"></a>const 成员</h2><ul>
-<li><code>const</code> 定义常对象必须进行初始化</li>
-<li><code>const</code> 还可区分重载函数</li>
-<li><strong>常数据成员只能在初始化列表中进行初始化</strong></li>
-<li>所有不会修改成员变量的函数都应该加 <code>const</code> 修饰，在函数名后加！由常对象调用</li>
-<li>常引用相当于只读的引用</li>
-<li>常数据成员可以在类定义的时候进行初始化</li>
-</ul>
-<h2 id="多文件结构和预编译"><a href="#多文件结构和预编译" class="headerlink" title="多文件结构和预编译"></a>多文件结构和预编译</h2><ul>
+<li><p><code>const</code> 定义常对象必须进行初始化</p>
+</li>
+<li><p><code>const</code> 还可区分重载函数</p>
+</li>
+<li><p><strong>常数据成员只能在初始化列表中进行初始化</strong></p>
+</li>
+<li><p>所有不会修改成员变量的函数都应该加 <code>const</code> 修饰，在函数名后加！由常对象调用</p>
+</li>
+<li><p>常引用相当于只读的引用</p>
+</li>
+<li><p>常数据成员可以在类定义的时候进行初始化<br>函数</p>
+</li>
 <li><p>一般的文件组织结构如下</p>
 <ul>
 <li>类声明文件（ .h 文件）</li>
@@ -360,6 +372,36 @@
 </li>
 <li><p><code>#ifdef</code>,<code>ifndef</code>,<code>endif</code></p>
 </li>
+</ul>
+<hr>
+<h1 id="数组、指针和字符串"><a href="#数组、指针和字符串" class="headerlink" title="数组、指针和字符串"></a>数组、指针和字符串</h1><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><ul>
+<li>初始化时可不带元素个数，根据给出的初始化值进行分配，如 <code>static int a[]={0,1,2,3,4,5,6,7,8,9}</code></li>
+<li>二维数组的初始化第1维下标个数可以省略</li>
+<li>如果只对部分元素初始化，剩下的未显式初始化的元素，将自动被初始化为零</li>
+<li><code>cin.get()</code> 一次输入一个字符</li>
+<li>对象数组中元素所属的类不声明构造函数，则采用默认构造函数</li>
+<li>基于范围的 for 循环<ul>
+<li>针对容器，例如 <code>int &amp; e : array</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><ul>
+<li><strong>不要用一个内部非静态变量去初始化 static 指针</strong></li>
+<li>整数0可以赋给指针，表示空指针</li>
+<li>允许定义或声明指向 void 类型的指针。该指针可以被赋予任何类型对象的地址，代表<strong>只能存放地址，不能访问内存空间，即无类型</strong></li>
+<li>C++11 使用 <code>nullptr</code> 关键字，是表达更准确，类型安全的空指针</li>
+<li><strong>不能通过指向常量的指针改变所指对象的值，但指针本身可以改变，可以指向另外的对象 (只读指针)</strong></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p1 = &amp;a; <span class="comment">//p1是指向常量的指针</span></span><br><span class="line"><span class="keyword">int</span> b;</span><br><span class="line">p1 = &amp;b; <span class="comment">//正确，p1本身的值可以改变</span></span><br><span class="line">*p1 = <span class="number">1</span>; <span class="comment">//编译时出错，不能通过p1改变所指的对象</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>若声明指针常量，则指针本身的值不能被改变</strong></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a;</span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> p2 = &amp;a;</span><br><span class="line">p2 = &amp;b; <span class="comment">//错误，p2是指针常量，值不能改变</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>指针可以和零之间进行等于或不等于的关系运算</li>
+<li></li>
 </ul>
 <hr>
 
@@ -602,15 +644,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">cpp</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -623,6 +661,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
             
             <div class="clearfix"></div>
