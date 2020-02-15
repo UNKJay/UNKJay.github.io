@@ -16,10 +16,11 @@
 <meta property="og:site_name" content="KJay的博客">
 <meta property="og:description" content="感谢侯捷老师和郑莉老师侯捷老师cpp课程郑莉老师cpp课程  从C到CPP输入输出流 C++ 中，数据从一个对象到另一个对象的流动抽象为“流”。流在使用前要被建立，使用后要被删除。 数据的输入与输出是通过I&#x2F;O流来实现的，cin和cout是预定义的流类对象。cin 用来处理标准输入，即键盘输入。cout 用来处理标准输出，即屏幕输出。 从流中获取数据的操作称为提取操作，向流中添加数据的操作称为插">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1-1.png">
-<meta property="og:updated_time" content="2020-02-13T08:35:37.749Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp2.png">
+<meta property="og:updated_time" content="2020-02-15T10:36:36.197Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1-1.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
   
@@ -167,7 +168,7 @@
 <h1 id="从C到CPP"><a href="#从C到CPP" class="headerlink" title="从C到CPP"></a>从C到CPP</h1><h2 id="输入输出流"><a href="#输入输出流" class="headerlink" title="输入输出流"></a>输入输出流</h2><ul>
 <li>C++ 中，数据从一个对象到另一个对象的流动抽象为“流”。流在使用前要被建立，使用后要被删除。</li>
 <li>数据的输入与输出是通过I/O流来实现的，cin和cout是预定义的流类对象。cin 用来处理标准输入，即键盘输入。cout 用来处理标准输出，即屏幕输出。</li>
-<li>从流中获取数据的操作称为提取操作，向流中添加数据的操作称为插入操作。<br><img src="/assests/blogImg/cpp1-1.png" alt="cpp1-1"></li>
+<li>从流中获取数据的操作称为提取操作，向流中添加数据的操作称为插入操作。<br><img src="/assests/blogImg/cpp1.png" alt="cpp1"></li>
 </ul>
 <ul>
 <li><strong>该图中设置浮点数的小数位数函数出现错误，应为 <code>setprecision</code> , 头文件为 <code>&lt;iomainip&gt;</code> , 需要配合 <code>fixed</code> 实现</strong></li>
@@ -249,22 +250,13 @@
 </ul>
 </li>
 </ul>
-<hr>
-<h1 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
-<li><p>设计时需要考虑的内容</p>
-<ul>
-<li>合法值</li>
-<li>函数和操作符号</li>
-<li>构造函数和析构函数</li>
-<li>初始化和赋值</li>
-<li>如何传参</li>
-<li>友元</li>
+<h2 id="auto-类型和-decltype-类型"><a href="#auto-类型和-decltype-类型" class="headerlink" title="auto 类型和 decltype 类型"></a>auto 类型和 decltype 类型</h2><ul>
+<li>编译器通过初始值自动推断变量的类型<ul>
+<li>如果val1+val2是int类型，则val是int类型</li>
 </ul>
 </li>
-<li><p>语法定义</p>
-</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">class</span> 类名称</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">                     公有成员（外部接口）</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">                      私有成员</span><br><span class="line"></span><br><span class="line">   <span class="keyword">protected</span>:</span><br><span class="line"></span><br><span class="line">                      保护型成员</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">auto</span> val= val1+val2;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">-  <span class="keyword">decltype</span> ：定义一个变量与某一表达式的类型相同，但并不用该表达式初始化变量</span><br><span class="line">`<span class="keyword">decltype</span>(i) j = <span class="number">2</span>`</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"># 类与对象</span><br><span class="line"></span><br><span class="line">## 定义</span><br><span class="line"></span><br><span class="line">- 设计时需要考虑的内容</span><br><span class="line">    - 合法值</span><br><span class="line">    - 函数和操作符号</span><br><span class="line">    - 构造函数和析构函数</span><br><span class="line">    - 初始化和赋值</span><br><span class="line">    - 如何传参</span><br><span class="line">    - 友元</span><br><span class="line"></span><br><span class="line">- 语法定义</span><br><span class="line"></span><br><span class="line">```C++</span><br><span class="line">class 类名称</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        公有成员（外部接口）</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        私有成员</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        保护型成员</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>可以在类定义时为数据成员提供初始值</li>
@@ -400,9 +392,58 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a;</span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> p2 = &amp;a;</span><br><span class="line">p2 = &amp;b; <span class="comment">//错误，p2是指针常量，值不能改变</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>指针可以和零之间进行等于或不等于的关系运算</li>
-<li></li>
+<li><p>指针可以和零之间进行等于或不等于的关系运算</p>
+</li>
+<li><p>不要将非静态局部地址用作函数的返回值</p>
+</li>
+<li><p>在子函数中通过动态内存分配new操作取得的内存地址返回给主函数是合法有效的，但是内存分配和释放不在同一级别，要注意不能忘记释放，避免内存泄漏</p>
+</li>
+<li><p>函数指针： <code>存储类型 数据类型 (* 函数指针名)()</code></p>
+<ul>
+<li>函数指针指向的是程序代码存储区</li>
+<li>主要用处是实现函数的回调</li>
+<li>参数表只需要列出类型即可</li>
+<li>函数名即代表地址， <code>&amp;</code> 运算符最好加上</li>
 </ul>
+</li>
+<li><p><code>对象指针名-&gt;成员名</code></p>
+</li>
+<li><p>this 指针</p>
+<ul>
+<li>隐含于类的每一个非静态成员函数中</li>
+<li><strong>当通过一个对象调用成员函数时，系统先将该对象的地址赋给 this 指针，然后调用成员函数，成员函数对对象的数据成员进行操作时，就隐含使用了 this 指针</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="动态内存分配"><a href="#动态内存分配" class="headerlink" title="动态内存分配"></a>动态内存分配</h2><ul>
+<li><p><code>new 类型名 (初始化参数列表)</code>,<code>delete 指针 p</code>  （指针 p 必须是 new 出来的）</p>
+</li>
+<li><p>申请数组</p>
+<ul>
+<li>分配： <code>new 类型名T [ 数组长度 ]</code></li>
+<li>释放： <code>delete[] 数组名p</code></li>
+<li>多维数组： <code>new 类型名T[第1维长度][第2维长度]…</code></li>
+</ul>
+</li>
+<li><p>将动态数组封装成类</p>
+<ul>
+<li>类中必须返回对象的引用，只有这样才能做左值使用</li>
+<li>可使用 <code>assert</code> 实现异常，额外收获</li>
+</ul>
+</li>
+<li><p>智能指针<br><img src="/assests/blogImg/cpp2.png" alt="cpp2"></p>
+</li>
+</ul>
+<h2 id="vector-类模板"><a href="#vector-类模板" class="headerlink" title="vector 类模板"></a>vector 类模板</h2><ul>
+<li><code>#include &lt;vector&gt;</code></li>
+<li>封装任何类型的动态数组，提供越界检查</li>
+<li>vector&lt;元素类型&gt; 数组对象名(数组长度);  如 <code>vector&lt;int&gt; array(5)</code></li>
+<li>访问： <code>array[1]</code></li>
+<li>总数： <code>array.size()</code></li>
+<li><code>array.begin()</code>,<code>array.end()</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> i = v.begin(); i != v.end(); ++i)</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *i &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> e : v)</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; e &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
 
       
@@ -644,11 +685,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
               </li>
              
               <li class="article-tag-list-item">
