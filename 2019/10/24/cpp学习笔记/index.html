@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp2.png">
-<meta property="og:updated_time" content="2020-02-15T10:36:36.197Z">
+<meta property="og:updated_time" content="2020-02-15T11:29:45.448Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
   
@@ -173,6 +173,7 @@
 <ul>
 <li><strong>该图中设置浮点数的小数位数函数出现错误，应为 <code>setprecision</code> , 头文件为 <code>&lt;iomainip&gt;</code> , 需要配合 <code>fixed</code> 实现</strong></li>
 <li>如<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;fixed&lt;&lt;setprecision(<span class="number">4</span>)&lt;&lt;<span class="number">123.23343432</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//123.2334, 不加 fixed 输出为 123.2</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 
 </li>
 </ul>
@@ -251,12 +252,29 @@
 </li>
 </ul>
 <h2 id="auto-类型和-decltype-类型"><a href="#auto-类型和-decltype-类型" class="headerlink" title="auto 类型和 decltype 类型"></a>auto 类型和 decltype 类型</h2><ul>
-<li>编译器通过初始值自动推断变量的类型<ul>
-<li>如果val1+val2是int类型，则val是int类型</li>
+<li>编译器通过初始值自动推断变量的类型，如果val1+val2是int类型，则val是int类型</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> val= val1+val2;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>decltype ：定义一个变量与某一表达式的类型相同，但并不用该表达式初始化变量，如 <code>decltype(i) j = 2</code></li>
+</ul>
+<hr>
+<h1 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
+<li><p>设计时需要考虑的内容</p>
+<ul>
+<li>合法值</li>
+<li>函数和操作符号</li>
+<li>构造函数和析构函数</li>
+<li>初始化和赋值</li>
+<li>如何传参</li>
+<li>友元</li>
 </ul>
 </li>
+<li><p>语法定义</p>
+</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">auto</span> val= val1+val2;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">-  <span class="keyword">decltype</span> ：定义一个变量与某一表达式的类型相同，但并不用该表达式初始化变量</span><br><span class="line">`<span class="keyword">decltype</span>(i) j = <span class="number">2</span>`</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"># 类与对象</span><br><span class="line"></span><br><span class="line">## 定义</span><br><span class="line"></span><br><span class="line">- 设计时需要考虑的内容</span><br><span class="line">    - 合法值</span><br><span class="line">    - 函数和操作符号</span><br><span class="line">    - 构造函数和析构函数</span><br><span class="line">    - 初始化和赋值</span><br><span class="line">    - 如何传参</span><br><span class="line">    - 友元</span><br><span class="line"></span><br><span class="line">- 语法定义</span><br><span class="line"></span><br><span class="line">```C++</span><br><span class="line">class 类名称</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        公有成员（外部接口）</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        私有成员</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        保护型成员</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 类名称</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        公有成员（外部接口）</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        私有成员</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        保护型成员</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>可以在类定义时为数据成员提供初始值</li>
@@ -689,11 +707,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
