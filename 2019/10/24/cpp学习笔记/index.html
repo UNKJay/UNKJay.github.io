@@ -18,7 +18,8 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp2.png">
-<meta property="og:updated_time" content="2020-02-15T11:29:45.448Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp3.png">
+<meta property="og:updated_time" content="2020-02-16T10:04:51.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
   
@@ -462,6 +463,51 @@
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> i = v.begin(); i != v.end(); ++i)</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *i &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> e : v)</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; e &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="对象的复制"><a href="#对象的复制" class="headerlink" title="对象的复制"></a>对象的复制</h2><ul>
+<li><p>深拷贝：当被复制的对象数据成员是 <strong>指针类型</strong> 时，不是复制该指针成员本身，而是将指针所指对象进行复制</p>
+</li>
+<li><p>移动构造：源对象资源的控制权全部交给目标对象<br><img src="/assests/blogImg/cpp3.png" alt="cpp3"></p>
+<ul>
+<li>有可被利用的临时对象———— <strong>函数返回带指针成员的对象</strong></li>
+<li>语法：  <code>class_name ( class_name &amp;&amp; )</code></li>
+<li><strong><code>&amp;&amp;</code> 为右值引用，函数返回的临时对象为右值</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">IntNum(<span class="keyword">const</span> IntNum &amp; n) : xptr(<span class="keyword">new</span> <span class="keyword">int</span>(*n.xptr))&#123;<span class="comment">//复制构造函数</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Calling copy constructor..."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">IntNum(IntNum &amp;&amp; n): xptr( n.xptr)&#123; <span class="comment">//移动构造函数</span></span><br><span class="line">    n.xptr = <span class="literal">nullptr</span>;               <span class="comment">//空指针不会被 delete</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Calling move constructor..."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串和-string-类"><a href="#字符串和-string-类" class="headerlink" title="字符串和 string 类"></a>字符串和 string 类</h2><ul>
+<li><p>“program”出现在表达式中，表示这一char数组的首地址，首地址可以赋给char常量指针</p>
+</li>
+<li><p><code>#include &lt;string&gt;</code></p>
+</li>
+<li><p>string 类常用构造函数</p>
+<ul>
+<li>string(); //默认构造函数，建立一个长度为0的串</li>
+<li>string(const char *s); //用指针s所指向的字符串常量初始化string对象</li>
+<li>string(const string&amp; rhs); //复制构造函数</li>
+</ul>
+</li>
+<li><p>常用操作</p>
+<ul>
+<li>s + t 将串s和t连接成一个新串</li>
+<li>s = t 用t更新s</li>
+<li>s == t 判断s与t是否相等</li>
+<li>s != t 判断s与t是否不等</li>
+<li>s &lt; t 判断s是否小于t（按字典顺序比较）</li>
+<li>s &lt;= t 判断s是否小于或等于t （按字典顺序比较）</li>
+<li>s &gt; t 判断s是否大于t （按字典顺序比较）</li>
+<li>s &gt;= t 判断s是否大于或等于t （按字典顺序比较）</li>
+<li>s[i] 访问串中下标为i的字符，从 0 开始</li>
+</ul>
+</li>
+<li><p>getline可以输入整行字符串（要包string头文件）</p>
+</li>
+<li><p>输入字符串时，可以使用其它分隔符作为字符串结束的标志（例如逗号、分号），将分隔符作为getline的第3个参数即可，默认以换行为分隔符</p>
+</li>
+<li><p><code>getline(cin,s,&#39;,&#39;)</code></p>
+</li>
+</ul>
 <hr>
 
       
@@ -695,27 +741,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">cpp</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -724,6 +762,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
             
             <div class="clearfix"></div>
