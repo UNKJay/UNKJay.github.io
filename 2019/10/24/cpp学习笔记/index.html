@@ -19,7 +19,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp2.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp3.png">
-<meta property="og:updated_time" content="2020-02-16T10:04:51.570Z">
+<meta property="og:updated_time" content="2020-02-19T15:01:13.907Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
   
@@ -221,6 +221,7 @@
 </ul>
 <ul>
 <li>传值代价太大，最好传指针或引用，引用实则是用指针实现的</li>
+<li>函数传参和返回值首先考虑传引用，<strong>若返回值是在函数内部创建的临时变量，则不能传引用</strong></li>
 </ul>
 <h2 id="含有可变参数的函数"><a href="#含有可变参数的函数" class="headerlink" title="含有可变参数的函数"></a>含有可变参数的函数</h2><ul>
 <li>所有参数类型相同，使用<code>intializer_list</code>标准库对象<ul>
@@ -741,19 +742,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -765,11 +766,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
             
             <div class="clearfix"></div>
