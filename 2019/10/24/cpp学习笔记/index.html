@@ -19,7 +19,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp2.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp3.png">
-<meta property="og:updated_time" content="2020-02-19T15:01:13.907Z">
+<meta property="og:updated_time" content="2020-03-08T15:06:02.019Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
   
@@ -172,7 +172,7 @@
 <li>从流中获取数据的操作称为提取操作，向流中添加数据的操作称为插入操作。<br><img src="/assests/blogImg/cpp1.png" alt="cpp1"></li>
 </ul>
 <ul>
-<li><strong>该图中设置浮点数的小数位数函数出现错误，应为 <code>setprecision</code> , 头文件为 <code>&lt;iomainip&gt;</code> , 需要配合 <code>fixed</code> 实现</strong></li>
+<li><strong>该图中设置浮点数的小数位数函数出现错误，应为 <code>setprecision</code> , 头文件为 <code>&lt;iomanip&gt;</code> , 需要配合 <code>fixed</code> 实现</strong></li>
 <li>如<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;fixed&lt;&lt;setprecision(<span class="number">4</span>)&lt;&lt;<span class="number">123.23343432</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//123.2334, 不加 fixed 输出为 123.2</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 
@@ -508,8 +508,16 @@
 </li>
 <li><p><code>getline(cin,s,&#39;,&#39;)</code></p>
 </li>
+<li><p><code>C</code> 及 <code>Cpp</code> 中常用字符串处理技巧</p>
+<ul>
+<li>转换为数字  <code>atoi()</code>  <code>stoi()</code></li>
+<li>分割字符串  <code>strtok(char *s,char c)</code> 后续使用 s 为 NULL</li>
+<li>替换和插入  <code>replace()</code>  <code>insert()</code></li>
+</ul>
+</li>
 </ul>
 <hr>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2><hr>
 
       
 
@@ -742,11 +750,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -754,7 +766,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -766,11 +778,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
             
             <div class="clearfix"></div>

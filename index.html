@@ -464,8 +464,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>数据结构与算法的学习应该相辅相成，因为多方面的原因（掩面哭泣），自己两门课程是分开学习且时间间隔长达一年。故重新参考网上的精品课程进行学习，一为复习，二为进行精进的学习<br>感谢陈越老师和邓俊辉老师<br><a href="https://www.icourse163.org/learn/ZJU-93001" target="_blank" rel="noopener">浙大mooc</a><br><a href="http://www.xuetangx.com/courses/" target="_blank" rel="noopener">清华mooc（分上下）</a></p>
+<p>数据结构与算法的学习应该相辅相成，因为多方面的原因（掩面哭泣），自己两门课程是分开学习且时间间隔长达一年。故重新参考网上的精品课程进行学习，一为复习，二为进行精进的学习<br>感谢陈越老师和邓俊辉老师<br><a href="https://www.icourse163.org/learn/ZJU-93001" target="_blank" rel="noopener">浙大mooc</a><br><a href="http://www.xuetangx.com/courses/" target="_blank" rel="noopener">清华mooc（分上下）</a><br>2020/02/23 开始正式学习，希望自己能学有所成，记得关注实习的事</p>
 </blockquote>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="关于求多项式值算法效率的简单测试"><a href="#关于求多项式值算法效率的简单测试" class="headerlink" title="关于求多项式值算法效率的简单测试"></a>关于求多项式值算法效率的简单测试</h2><ul>
+<li><code>#include &lt;time.h&gt;</code></li>
+<li><code>time_t t= time();</code> 返回的是时钟打点的次数</li>
+<li>常数 CLOCKS_PER_SEC 代表机器上每秒时钟打点的次数</li>
+<li>tips: 使用 gcc 编译时包含函数 pow() 需要 -lm</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">start=clock();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAXK; i++)</span><br><span class="line">    f1(MAXN<span class="number">-1</span>,a,<span class="number">1.1</span>);</span><br><span class="line">stop=clock();</span><br><span class="line">duration= (<span class="keyword">double</span>)(stop-start)/CLOCKS_PER_SEC/MAXK;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -544,7 +551,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>感谢翁恺老师和郑莉老师<br><a href="https://www.icourse163.org/learn/ZJU-1001541001" target="_blank" rel="noopener">翁恺老师的Java课程(上篇)</a><br><a href="https://www.icourse163.org/learn/ZJU-1001542001" target="_blank" rel="noopener">翁恺老师的Java课程(下篇)</a><br><a href="http://www.xuetangx.com/courses/" target="_blank" rel="noopener">郑莉老师Java课程</a></p>
+<p>感谢翁恺老师和郑莉老师<br>由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github</p>
+</blockquote>
+<blockquote>
+<p><a href="UNKJay.github.io">本人博客</a><br><a href="https://www.icourse163.org/learn/ZJU-1001541001" target="_blank" rel="noopener">翁恺老师的Java课程(上篇)</a><br><a href="https://www.icourse163.org/learn/ZJU-1001542001" target="_blank" rel="noopener">翁恺老师的Java课程(下篇)</a><br><a href="http://www.xuetangx.com/courses/" target="_blank" rel="noopener">郑莉老师Java课程</a></p>
 </blockquote>
 
       
@@ -628,7 +638,7 @@
 <li>从流中获取数据的操作称为提取操作，向流中添加数据的操作称为插入操作。<br><img src="/assests/blogImg/cpp1.png" alt="cpp1"></li>
 </ul>
 <ul>
-<li><strong>该图中设置浮点数的小数位数函数出现错误，应为 <code>setprecision</code> , 头文件为 <code>&lt;iomainip&gt;</code> , 需要配合 <code>fixed</code> 实现</strong></li>
+<li><strong>该图中设置浮点数的小数位数函数出现错误，应为 <code>setprecision</code> , 头文件为 <code>&lt;iomanip&gt;</code> , 需要配合 <code>fixed</code> 实现</strong></li>
 <li>如<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;fixed&lt;&lt;setprecision(<span class="number">4</span>)&lt;&lt;<span class="number">123.23343432</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//123.2334, 不加 fixed 输出为 123.2</span></span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2019/10/24/cpp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">more >></a>
@@ -774,11 +784,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -786,7 +800,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -798,11 +812,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
             
             <div class="clearfix"></div>
