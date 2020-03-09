@@ -19,7 +19,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp2.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp3.png">
-<meta property="og:updated_time" content="2020-03-08T15:06:02.019Z">
+<meta property="og:updated_time" content="2020-03-09T09:36:34.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
   
@@ -291,12 +291,11 @@
 <li><strong>不带任何参数</strong> 或 <strong>参数均有默认值</strong>的构造函数作为默认构造函数，默认构造函数建议写</li>
 <li>可以使用关键字 <code>=default</code> 使编译器生成隐含构造函数</li>
 <li><strong>委托构造函数</strong>使用其他构造函数实现，在参数列表中调用即可</li>
-<li>复制构造函数：使用已存在对象初始化新对象<ul>
-<li>形参为本类的对象引用，多为 <code>const</code></li>
-<li>复制构造的另外两个时机： 形实结合、函数返回值为对象</li>
-<li>如果不希望对象被复制构造，在 C++11 标准中使用 <code>=delete</code> 指示即可</li>
-<li><strong>如果对象在声明的同时将另一个已存在的对象赋给它，就会调用复制构造函数；如果对象已经存在了，然后再将另一个已存在的对象赋给它，调用的就是重载赋值运算符</strong></li>
-</ul>
+<li>复制构造函数：使用已存在对象初始化新对象<blockquote>
+<p>形参为本类的对象引用，多为 <code>const</code></p>
+<pre><code>复制构造的另外两个时机： 形实结合、函数返回值为对象
+如果不希望对象被复制构造，在 C++11 标准中使用 `=delete` 指示即可
+**如果对象在声明的同时将另一个已存在的对象赋给它，就会调用复制构造函数；如果对象已经存在了，然后再将另一个已存在的对象赋给它，调用的就是重载赋值运算符**</code></pre></blockquote>
 </li>
 </ul>
 <h2 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h2><ul>
@@ -490,17 +489,16 @@
 </ul>
 </li>
 <li><p>常用操作</p>
-<ul>
-<li>s + t 将串s和t连接成一个新串</li>
-<li>s = t 用t更新s</li>
-<li>s == t 判断s与t是否相等</li>
-<li>s != t 判断s与t是否不等</li>
-<li>s &lt; t 判断s是否小于t（按字典顺序比较）</li>
-<li>s &lt;= t 判断s是否小于或等于t （按字典顺序比较）</li>
-<li>s &gt; t 判断s是否大于t （按字典顺序比较）</li>
-<li>s &gt;= t 判断s是否大于或等于t （按字典顺序比较）</li>
-<li>s[i] 访问串中下标为i的字符，从 0 开始</li>
-</ul>
+<blockquote>
+<p>s + t 将串s和t连接成一个新串</p>
+<pre><code>s = t 用t更新s
+s == t 判断s与t是否相等
+s != t 判断s与t是否不等
+s &lt; t 判断s是否小于t（按字典顺序比较）
+s &lt;= t 判断s是否小于或等于t （按字典顺序比较）
+s &gt; t 判断s是否大于t （按字典顺序比较）
+s &gt;= t 判断s是否大于或等于t （按字典顺序比较）
+s[i] 访问串中下标为i的字符，从 0 开始</code></pre></blockquote>
 </li>
 <li><p>getline可以输入整行字符串（要包string头文件）</p>
 </li>
@@ -750,7 +748,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -758,11 +756,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -778,7 +776,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
             
             <div class="clearfix"></div>

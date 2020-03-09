@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java学习笔记 | KJay的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程">
+  <meta name="description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程  概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重继">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java学习笔记">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;07&#x2F;Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;index.html">
 <meta property="og:site_name" content="KJay的博客">
-<meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程">
+<meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程  概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重继">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-08T15:11:46.410Z">
+<meta property="og:updated_time" content="2020-03-09T14:20:04.253Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
@@ -165,6 +165,123 @@
 <blockquote>
 <p><a href="UNKJay.github.io">本人博客</a><br><a href="https://www.icourse163.org/learn/ZJU-1001541001" target="_blank" rel="noopener">翁恺老师的Java课程(上篇)</a><br><a href="https://www.icourse163.org/learn/ZJU-1001542001" target="_blank" rel="noopener">翁恺老师的Java课程(下篇)</a><br><a href="http://www.xuetangx.com/courses/" target="_blank" rel="noopener">郑莉老师Java课程</a></p>
 </blockquote>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><ul>
+<li>最大的优势是 <strong>跨平台</strong></li>
+<li><strong>纯面向对象</strong> , 无全局变量和函数，所有定义均在 class 中</li>
+<li>相对 <code>C++</code> 简单很多，取消多重继承，指针; <strong>实现自动垃圾回收</strong> ; package 相当于 namespace</li>
+<li>分布式</li>
+<li>多线程</li>
+<li><strong>半编译半解释</strong><blockquote>
+<p>源程序首先被编译成字节码（ Java 虚拟机支持的二进制指令）文件 .class ,然后可以在不同平台被 Java 虚拟机解释运行</p>
+</blockquote>
+</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="JDK，JVM"><a href="#JDK，JVM" class="headerlink" title="JDK，JVM"></a>JDK，JVM</h2><ul>
+<li><p>Java 开发工具包（联想 gcc）</p>
+<blockquote>
+<p>javac</p>
+<pre><code>java
+jdb</code></pre></blockquote>
+</li>
+<li><p>Java 平台版本</p>
+<blockquote>
+<p>JavaSE</p>
+<pre><code>JavaEE</code></pre></blockquote>
+</li>
+<li><p>一个类必须包含方法 <code>public static void main(String[])</code> 才能作为程序启动类， <code>public static void main(String[])</code> 为程序的入口</p>
+</li>
+<li><p>Java 虚拟机是一个用于解释字节码的软件，有一套虚拟的 CPU 指令集及汇编指令，.class 文件包含了 JVM 的 CPU 指令集。</p>
+</li>
+<li><p>安装 JDK</p>
+<blockquote>
+<p>Windows 下安装使用安装程序即可，需要记住安装目录</p>
+<pre><code>通过环境变量 JAVA_HOME 切换不同 JDK版本
+/bin 包含 javac,java,jdb 等工具
+/jre 为 Java 运行环境，即 JVM</code></pre></blockquote>
+<blockquote>
+<p>Linux </p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jvm/default</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOEM&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>配置</p>
+<blockquote>
+<p>Windows:</p>
+<pre><code>JAVA_HOME 指向安装目录
+%JAVA_HOME%/bin 添加到环境变量 PATH 中
+使用命令行运行时需要配置环境变量 CLASSPATH ，作用是让JVM 能够找到运行的 Java 类，需要指定 **class 文件所属包的顶级目录；如果多个class文件被打包到 .jar 文件，则一定要指定到 jar 文件（而不是 jar 文件所在的目录，因为 .jar 文件本质上就是一个目录）**   </code></pre></blockquote>
+<blockquote>
+<p>Linux 安装即配置好，可通过 <code>echo $PATH</code> 查看环境变量</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="命令行运行"><a href="#命令行运行" class="headerlink" title="命令行运行"></a>命令行运行</h2><ul>
+<li>Windows   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_151</span><br><span class="line">set PROJECT_HOME=E:\chapter1</span><br><span class="line">set path=%path%;%JAVA_HOME%\bin</span><br><span class="line">set classpath=%classpath%;%PROJECT_HOME%\class</span><br><span class="line"></span><br><span class="line">java -classpath "%classpath%" homework.ch1.Welcome</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<pre><code>&gt; 若已经设置好的环境变量可不再重新设置
+  带分号的目的是保留原有的不变,带引号的目的是消去空格的影响
+  需要带包名限定，**不带 class 后缀名** 
+  带 -classpath 选项，也可以是 -cp 
+  图形化界面设置环境变量在系统属性中的环境变量</code></pre><ul>
+<li>Linux  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PROJECT_PATH=/home/pkj/chapter1</span><br><span class="line">classpath=<span class="variable">$PROJECT_PATH</span>/jar/run.jar</span><br><span class="line"></span><br><span class="line">java -cp <span class="variable">$classpath</span> homework.ch1.Welcome</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ul>
+<li><p>编写源代码，后缀名为 .java ; 文件名必须和公共类名一致 (公共类不能超过一个) ，如果有多个类且无 public 类，文件名可与任意类名相同，<strong>有多少个 class 文件编译就会生成多个 .class 文件</strong></p>
+</li>
+<li><p>编译， 生成 .class 字节码文件</p>
+<blockquote>
+<p><code>javac 源文件名（确保能找到）</code></p>
+</blockquote>
+</li>
+<li><p>执行</p>
+<blockquote>
+<p><code>java 启动类完全限定类名（需设置好 classpath 环境变量）</code></p>
+<pre><code>启动类必须有 `public static void main(String[] args)` 函数</code></pre></blockquote>
+</li>
+<li><p>Intellij Idea tips</p>
+<blockquote>
+<p>首先新建 bin 目录存放编译后的字节码文件，需要在设置中对默认路径进行更改</p>
+<pre><code>需要新建包名，包名从左至右级别降低，与域名相反</code></pre></blockquote>
+</li>
+</ul>
+<h2 id="程序剖析"><a href="#程序剖析" class="headerlink" title="程序剖析"></a>程序剖析</h2><ul>
+<li><p>注释</p>
+<blockquote>
+<p>单行注释： <code>//</code></p>
+<pre><code>多行注释： `/**/`
+文档注释： `/**    */` ; 可使用 javadoc 命令提取注释</code></pre></blockquote>
+<blockquote>
+<p>javadoc</p>
+<pre><code>注释对象： 类、类的方法、类的数据成员
+Intellij Idea 中 Tools Generate Javadoc </code></pre></blockquote>
+</li>
+<li><p>保留字</p>
+</li>
+<li><p>修饰符</p>
+<blockquote>
+<p>修饰类、方法、数据的属性及用法</p>
+</blockquote>
+</li>
+<li><p><strong>方法必须通过对象或类调用</strong> , 被类名调用的方法为静态方法</p>
+</li>
+<li><p>main 方法以及 init 方法</p>
+<blockquote>
+<p>Java Application : main 方法为入口</p>
+<pre><code>Java Applet : init() 为入口</code></pre></blockquote>
+</li>
+<li><p>消息框</p>
+<blockquote>
+<p>可以使用 <code>JOptionPane</code> 的 <code>showMessageDialog</code> 方法显示消息文本</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.swing.JOptionPane;</span><br><span class="line">JOptionPane.showMessageDialog(<span class="keyword">null</span>,<span class="string">"Dialog message"</span>, <span class="string">"Dialog title"</span>,JOptionPane.QUESTION_MESSAGE);</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
 
       
 
@@ -402,7 +519,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -410,11 +527,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -430,7 +547,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
             
             <div class="clearfix"></div>
