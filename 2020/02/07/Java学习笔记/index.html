@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="KJay的博客">
 <meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程  概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重继">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-09T14:20:04.253Z">
+<meta property="og:updated_time" content="2020-03-10T01:34:43.385Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
@@ -181,14 +181,13 @@
 <h2 id="JDK，JVM"><a href="#JDK，JVM" class="headerlink" title="JDK，JVM"></a>JDK，JVM</h2><ul>
 <li><p>Java 开发工具包（联想 gcc）</p>
 <blockquote>
-<p>javac</p>
-<pre><code>java
-jdb</code></pre></blockquote>
+<p>javac<br>java<br>jdb</p>
+</blockquote>
 </li>
 <li><p>Java 平台版本</p>
 <blockquote>
-<p>JavaSE</p>
-<pre><code>JavaEE</code></pre></blockquote>
+<p>JavaSE<br>JavaEE</p>
+</blockquote>
 </li>
 <li><p>一个类必须包含方法 <code>public static void main(String[])</code> 才能作为程序启动类， <code>public static void main(String[])</code> 为程序的入口</p>
 </li>
@@ -196,10 +195,8 @@ jdb</code></pre></blockquote>
 </li>
 <li><p>安装 JDK</p>
 <blockquote>
-<p>Windows 下安装使用安装程序即可，需要记住安装目录</p>
-<pre><code>通过环境变量 JAVA_HOME 切换不同 JDK版本
-/bin 包含 javac,java,jdb 等工具
-/jre 为 Java 运行环境，即 JVM</code></pre></blockquote>
+<p>Windows 下安装使用安装程序即可，需要记住安装目录<br>通过环境变量 JAVA_HOME 切换不同 JDK版本<br>/bin 包含 javac,java,jdb 等工具<br>/jre 为 Java 运行环境，即 JVM</p>
+</blockquote>
 <blockquote>
 <p>Linux </p>
   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jvm/default</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOEM&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br></pre></td></tr></table></figure>
@@ -207,10 +204,8 @@ jdb</code></pre></blockquote>
 </li>
 <li><p>配置</p>
 <blockquote>
-<p>Windows:</p>
-<pre><code>JAVA_HOME 指向安装目录
-%JAVA_HOME%/bin 添加到环境变量 PATH 中
-使用命令行运行时需要配置环境变量 CLASSPATH ，作用是让JVM 能够找到运行的 Java 类，需要指定 **class 文件所属包的顶级目录；如果多个class文件被打包到 .jar 文件，则一定要指定到 jar 文件（而不是 jar 文件所在的目录，因为 .jar 文件本质上就是一个目录）**   </code></pre></blockquote>
+<p>Windows:<br>JAVA_HOME 指向安装目录<br>%JAVA_HOME%/bin 添加到环境变量 PATH 中<br>使用命令行运行时需要配置环境变量 CLASSPATH ，作用是让JVM 能够找到运行的 Java 类，需要指定 <strong>class 文件所属包的顶级目录；如果多个class文件被打包到 .jar 文件，则一定要指定到 jar 文件（而不是 jar 文件所在的目录，因为 .jar 文件本质上就是一个目录）</strong>   </p>
+</blockquote>
 <blockquote>
 <p>Linux 安装即配置好，可通过 <code>echo $PATH</code> 查看环境变量</p>
 </blockquote>
@@ -223,10 +218,10 @@ jdb</code></pre></blockquote>
 </li>
 </ul>
 <pre><code>&gt; 若已经设置好的环境变量可不再重新设置
-  带分号的目的是保留原有的不变,带引号的目的是消去空格的影响
-  需要带包名限定，**不带 class 后缀名** 
-  带 -classpath 选项，也可以是 -cp 
-  图形化界面设置环境变量在系统属性中的环境变量</code></pre><ul>
+&gt; 带分号的目的是保留原有的不变,带引号的目的是消去空格的影响
+&gt; 需要带包名限定，**不带 class 后缀名** 
+&gt; 带 -classpath 选项，也可以是 -cp 
+&gt; 图形化界面设置环境变量在系统属性中的环境变量</code></pre><ul>
 <li>Linux  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PROJECT_PATH=/home/pkj/chapter1</span><br><span class="line">classpath=<span class="variable">$PROJECT_PATH</span>/jar/run.jar</span><br><span class="line"></span><br><span class="line">java -cp <span class="variable">$classpath</span> homework.ch1.Welcome</span><br></pre></td></tr></table></figure>
 
 </li>
@@ -241,25 +236,23 @@ jdb</code></pre></blockquote>
 </li>
 <li><p>执行</p>
 <blockquote>
-<p><code>java 启动类完全限定类名（需设置好 classpath 环境变量）</code></p>
-<pre><code>启动类必须有 `public static void main(String[] args)` 函数</code></pre></blockquote>
+<p><code>java 启动类完全限定类名（需设置好 classpath 环境变量）</code><br>启动类必须有 <code>public static void main(String[] args)</code> 函数</p>
+</blockquote>
 </li>
 <li><p>Intellij Idea tips</p>
 <blockquote>
-<p>首先新建 bin 目录存放编译后的字节码文件，需要在设置中对默认路径进行更改</p>
-<pre><code>需要新建包名，包名从左至右级别降低，与域名相反</code></pre></blockquote>
+<p>首先新建 bin 目录存放编译后的字节码文件，需要在设置中对默认路径进行更改<br>需要新建包名，包名从左至右级别降低，与域名相反</p>
+</blockquote>
 </li>
 </ul>
 <h2 id="程序剖析"><a href="#程序剖析" class="headerlink" title="程序剖析"></a>程序剖析</h2><ul>
 <li><p>注释</p>
 <blockquote>
-<p>单行注释： <code>//</code></p>
-<pre><code>多行注释： `/**/`
-文档注释： `/**    */` ; 可使用 javadoc 命令提取注释</code></pre></blockquote>
+<p>单行注释： <code>//</code><br>多行注释： <code>/**/</code><br>文档注释： <code>/**    */</code> ; 可使用 javadoc 命令提取注释</p>
+</blockquote>
 <blockquote>
-<p>javadoc</p>
-<pre><code>注释对象： 类、类的方法、类的数据成员
-Intellij Idea 中 Tools Generate Javadoc </code></pre></blockquote>
+<p>javadoc<br>注释对象： 类、类的方法、类的数据成员<br>Intellij Idea 中 Tools Generate Javadoc </p>
+</blockquote>
 </li>
 <li><p>保留字</p>
 </li>
@@ -272,8 +265,8 @@ Intellij Idea 中 Tools Generate Javadoc </code></pre></blockquote>
 </li>
 <li><p>main 方法以及 init 方法</p>
 <blockquote>
-<p>Java Application : main 方法为入口</p>
-<pre><code>Java Applet : init() 为入口</code></pre></blockquote>
+<p>Java Application : main 方法为入口<br>Java Applet : init() 为入口</p>
+</blockquote>
 </li>
 <li><p>消息框</p>
 <blockquote>
@@ -523,15 +516,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">OS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,10 +541,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
             
             <div class="clearfix"></div>
