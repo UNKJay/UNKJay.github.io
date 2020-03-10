@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="KJay的博客">
 <meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程   概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-10T01:56:43.832Z">
+<meta property="og:updated_time" content="2020-03-10T05:46:37.124Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
@@ -215,10 +215,10 @@
 <p>Linux 安装即配置好，可通过 <code>echo $PATH</code> 查看环境变量</p>
 </blockquote>
 <h2 id="命令行运行"><a href="#命令行运行" class="headerlink" title="命令行运行"></a>命令行运行</h2><ul>
-<li>Windows</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_151</span><br><span class="line">set PROJECT_HOME=E:\chapter1</span><br><span class="line">set path=%path%;%JAVA_HOME%\bin</span><br><span class="line">set classpath=%classpath%;%PROJECT_HOME%\class</span><br><span class="line">java -classpath "%classpath%" homework.ch1.Welcome</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+<li>Windows<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_151</span><br><span class="line">set PROJECT_HOME=E:\chapter1</span><br><span class="line">set path=%path%;%JAVA_HOME%\bin</span><br><span class="line">set classpath=%classpath%;%PROJECT_HOME%\class</span><br><span class="line">java -classpath "%classpath%" homework.ch1.Welcome</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
 <blockquote>
 <p>若已经设置好的环境变量可不再重新设置<br>带分号的目的是保留原有的不变,带引号的目的是消去空格的影响<br>需要带包名限定，<strong>不带 class 后缀名</strong><br>带 -classpath 选项，也可以是 -cp<br>图形化界面设置环境变量在系统属性中的环境变量</p>
 </blockquote>
@@ -285,7 +285,105 @@
 <li>标准输入流： System.in</li>
 <li>Scanner 类 (java.util.Scanner)</li>
 </ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"><span class="comment">//构造函数Scanner的参数类型也可为java.io.File</span></span><br><span class="line"><span class="comment">//这是Scanner就从文件而不是标准输入流读取数据</span></span><br><span class="line"><span class="keyword">double</span> d = scanner.nextDouble( ); </span><br><span class="line">方法：</span><br><span class="line">    nextByte()、nextShort()、nextInt()</span><br><span class="line">    nextLong()、nextFloat()、nextDouble()</span><br><span class="line">    next() 读入一个字符串</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>如果输入不合法，会抛出异常</p>
+</blockquote>
+<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><ul>
+<li><p>与 Cpp 类似</p>
+</li>
+<li><p>通常编译器接受前 128 个字符</p>
+</li>
+<li><p>常量</p>
+<blockquote>
+<p>与 Cpp 不同，使用 <code>final</code> 关键字<br>常量名应全大写，中间用下划线隔开不同单词</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="赋值表达式"><a href="#赋值表达式" class="headerlink" title="赋值表达式"></a>赋值表达式</h2><ul>
+<li>右结合， <code>i=j=k=1</code></li>
+<li>局部变量使用前必须赋初值</li>
+<li>类的成员变量默认初值为 0</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
+<li>值类型： byte,short,int,long,char,float,double,boolean</li>
+<li>引用类型： <strong>class</strong>,<strong>interface</strong>,<strong>array</strong></li>
+<li>引用实际上为指针，<strong>变量为值变量或引用变量取决于变量的声明类型Type</strong></li>
+<li><strong>通过引用变量可以让你访问对象，但不能对引用变量本身进行任何操作</strong></li>
+</ul>
+<h2 id="数值运算"><a href="#数值运算" class="headerlink" title="数值运算"></a>数值运算</h2><ul>
+<li>整数相除直接省略小数部分： -5/2=-2</li>
+<li>字面量：与 Cpp 相同， 浮点数无后缀表示 double 类型</li>
+<li>整数除 0 产生 ArithmeticException 异常</li>
+<li>浮点数除 0 等于 Infinity ， 0.0 除 0.0 等于 NaN</li>
+</ul>
+<h2 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h2><ul>
+<li><p>Java 中 char 表示 <strong>16</strong> 位的单个Unicode字符</p>
+</li>
+<li><p>可以用 \uxxxx 的形式表示， xxxx 为 16 进制</p>
+</li>
+<li><p>字符串是 String 类， <strong>为引用类型</strong></p>
+</li>
+<li><p>+,+= 用于连接两个字符串，如果如果二个操作数一个是字符串，另一个不是字符串，则先将非字符串操作数转换成字符串，再执行连接操作; <strong>注意这不是运算符重载， Java 不支持运算符重载</strong></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String message = <span class="string">"Welcome "</span> + <span class="string">"to "</span> + <span class="string">"java"</span>;  <span class="comment">// Welcome to Java</span></span><br><span class="line">String s = “Chapter” + <span class="number">2</span>;                   <span class="comment">// Chapter2：2，自动转成字符串</span></span><br><span class="line">String s1 += <span class="string">"Supplement"</span> + <span class="string">'B'</span>; 		    <span class="comment">// SupplementB  </span></span><br><span class="line">message += <span class="string">" and Java is fun"</span>;  		<span class="comment">// Welcome to Java and Java is fun</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> j = <span class="number">2</span>;</span><br><span class="line">System.out.println(<span class="string">"i + j = "</span>  + i + j);	          <span class="comment">// i+j=12</span></span><br><span class="line">System.out.println(<span class="string">"i + j = "</span>  + (i + j));	          <span class="comment">// i+j = 3</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>从对话框获得输入</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String string=JOptionPane.showInputDialog(<span class="keyword">null</span>,<span class="string">"Prompting Message"</span>,<span class="string">"Dialog title"</span>,JOptionPane.QUESTION_MESSAGE);</span><br><span class="line"><span class="comment">// String string = JOptionPane.showInputDialog("Prompting Message");</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> i = Integer.parseInt(string);</span><br><span class="line"><span class="keyword">double</span> d= Double.parseDouble(string);</span><br><span class="line">System.out.println(<span class="string">"You enter is "</span>+ i);</span><br></pre></td></tr></table></figure>
+
+<h2 id="良好的编程风格"><a href="#良好的编程风格" class="headerlink" title="良好的编程风格"></a>良好的编程风格</h2><ul>
+<li>类名的各个单词首字母大写（驼峰式命名），尽量使用名词; StudentInformation</li>
+<li>变量和方法名使用小写，多个单词第一个单词首字母小写，其余单词首字母大写，尽量使用动词</li>
+<li>常量全大写，各单词间用下划线分隔</li>
+<li>Cpp 一般都使用下划线分割单词</li>
+</ul>
+<h2 id="常见错误类型"><a href="#常见错误类型" class="headerlink" title="常见错误类型"></a>常见错误类型</h2><ul>
+<li>语法错误（ syntax error ）</li>
+<li>运行时错误（ runtime error ）</li>
+<li>逻辑错误（ logic error ）</li>
+</ul>
+<h2 id="有用的资源"><a href="#有用的资源" class="headerlink" title="有用的资源"></a>有用的资源</h2><ul>
+<li><a href="www.apache.org">最大的 Java 开源社区</a></li>
+<li>开源代码检查工具，需要配置 xml 文件： <a href="http://checkstyle.sourceforge.net/checks.html" target="_blank" rel="noopener">CheckStyle</a></li>
+<li><a href="https://google.github.io/styleguide/javaguide.html" target="_blank" rel="noopener">Google 官方代码规范</a></li>
+<li><a href="http://java.sun.com/docs/books/jls/second_edition/html/index.html" target="_blank" rel="noopener">Sun官方代码规范</a></li>
+<li><a href="http://plugins.jetbrains.com/plugin/1065-checkstyle-idea" target="_blank" rel="noopener">IDEA Checkstyle插件主页</a></li>
+</ul>
+<hr>
+<h1 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h1><h2 id="boolean-数据类型"><a href="#boolean-数据类型" class="headerlink" title="boolean 数据类型"></a>boolean 数据类型</h2><ul>
+<li><p>boolean 数据类型不能与其他数据类型相互转换</p>
+</li>
+<li><p>&amp;&amp;,||: 条件</p>
+</li>
+<li><p>&amp;,| : 无条件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A&amp;&amp;B;   <span class="comment">// A 为 false ，不再考虑 B</span></span><br><span class="line">A&amp;B;    <span class="comment">//A 为 false ， 还要求 B</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>即使条件分支只有一条语句，也加花括号！</p>
+</li>
+<li><p>嵌套尽量采用 <code>else if</code></p>
+</li>
+<li><p><code>even = (number % 2 == 0);</code></p>
+</li>
+<li><p><code>if (even)     //not if (even == true)</code></p>
+</li>
+</ul>
+<h2 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h2><ul>
+<li>判断条件 expression 只能是不大于 int 的类型</li>
+</ul>
+<h2 id="条件表达式"><a href="#条件表达式" class="headerlink" title="条件表达式"></a>条件表达式</h2><ul>
+<li>Java 同样支持</li>
+</ul>
+<h2 id="操作符优先级"><a href="#操作符优先级" class="headerlink" title="操作符优先级"></a>操作符优先级</h2><ul>
+<li>与 Cpp 一样</li>
+<li>赋值运算符和 ?: 运算符右结合</li>
+<li><strong>操作数永远从左到右进行运算</strong></li>
+</ul>
+<hr>
+<h1 id="数学函数、字符和字符串"><a href="#数学函数、字符和字符串" class="headerlink" title="数学函数、字符和字符串"></a>数学函数、字符和字符串</h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2>
       
 
       
