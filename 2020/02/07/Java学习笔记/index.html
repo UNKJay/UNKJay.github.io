@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java学习笔记 | KJay的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程  概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重继">
+  <meta name="description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程   概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java学习笔记">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;07&#x2F;Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0&#x2F;index.html">
 <meta property="og:site_name" content="KJay的博客">
-<meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程  概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重继">
+<meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程   概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-10T01:34:43.385Z">
+<meta property="og:updated_time" content="2020-03-10T01:54:14.858Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
@@ -165,6 +165,7 @@
 <blockquote>
 <p><a href="UNKJay.github.io">本人博客</a><br><a href="https://www.icourse163.org/learn/ZJU-1001541001" target="_blank" rel="noopener">翁恺老师的Java课程(上篇)</a><br><a href="https://www.icourse163.org/learn/ZJU-1001542001" target="_blank" rel="noopener">翁恺老师的Java课程(下篇)</a><br><a href="http://www.xuetangx.com/courses/" target="_blank" rel="noopener">郑莉老师Java课程</a></p>
 </blockquote>
+<hr>
 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><ul>
 <li>最大的优势是 <strong>跨平台</strong></li>
 <li><strong>纯面向对象</strong> , 无全局变量和函数，所有定义均在 class 中</li>
@@ -197,20 +198,22 @@
 <blockquote>
 <p>Windows 下安装使用安装程序即可，需要记住安装目录<br>通过环境变量 JAVA_HOME 切换不同 JDK版本<br>/bin 包含 javac,java,jdb 等工具<br>/jre 为 Java 运行环境，即 JVM</p>
 </blockquote>
+</li>
+</ul>
 <blockquote>
 <p>Linux </p>
-  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jvm/default</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOEM&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br></pre></td></tr></table></figure>
 </blockquote>
-</li>
-<li><p>配置</p>
-<blockquote>
-<p>Windows:<br>JAVA_HOME 指向安装目录<br>%JAVA_HOME%/bin 添加到环境变量 PATH 中<br>使用命令行运行时需要配置环境变量 CLASSPATH ，作用是让JVM 能够找到运行的 Java 类，需要指定 <strong>class 文件所属包的顶级目录；如果多个class文件被打包到 .jar 文件，则一定要指定到 jar 文件（而不是 jar 文件所在的目录，因为 .jar 文件本质上就是一个目录）</strong>   </p>
-</blockquote>
-<blockquote>
-<p>Linux 安装即配置好，可通过 <code>echo $PATH</code> 查看环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jvm/default</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOEM&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置<blockquote>
+<p>Windows:<br>JAVA_HOME 指向安装目录<br>%JAVA_HOME%/bin 添加到环境变量 PATH 中<br>使用命令行运行时需要配置环境变量 CLASSPATH ，作用是让JVM 能够找到运行的Java 类，需要指定 <strong>class 文件所属包的顶级目录；如果多个class文件被打包到 jar 文件，则一定要指定到 jar 文件（而不是 jar 文件所在的目录，因为 .jar 件本质上就是一个目录）</strong>   </p>
 </blockquote>
 </li>
 </ul>
+<blockquote>
+<p>Linux 安装即配置好，可通过 <code>echo $PATH</code> 查看环境变量</p>
+</blockquote>
 <h2 id="命令行运行"><a href="#命令行运行" class="headerlink" title="命令行运行"></a>命令行运行</h2><ul>
 <li>Windows   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_151</span><br><span class="line">set PROJECT_HOME=E:\chapter1</span><br><span class="line">set path=%path%;%JAVA_HOME%\bin</span><br><span class="line">set classpath=%classpath%;%PROJECT_HOME%\class</span><br><span class="line"></span><br><span class="line">java -classpath "%classpath%" homework.ch1.Welcome</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
 
@@ -274,6 +277,13 @@
   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.swing.JOptionPane;</span><br><span class="line">JOptionPane.showMessageDialog(<span class="keyword">null</span>,<span class="string">"Dialog message"</span>, <span class="string">"Dialog title"</span>,JOptionPane.QUESTION_MESSAGE);</span><br></pre></td></tr></table></figure>
 </blockquote>
 </li>
+</ul>
+<hr>
+<h1 id="基本程序设计"><a href="#基本程序设计" class="headerlink" title="基本程序设计"></a>基本程序设计</h1><h2 id="控制台读取输入"><a href="#控制台读取输入" class="headerlink" title="控制台读取输入"></a>控制台读取输入</h2><ul>
+<li>默认会 import java.lang.System 类</li>
+<li>标准输出流： System.out</li>
+<li>标准输入流： System.in</li>
+<li>Scanner 类 (java.util.Scanner)</li>
 </ul>
 
       
