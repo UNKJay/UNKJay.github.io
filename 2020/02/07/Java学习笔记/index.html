@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="KJay的博客">
 <meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程   概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-10T05:46:37.124Z">
+<meta property="og:updated_time" content="2020-03-10T14:43:28.089Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
@@ -383,7 +383,149 @@
 <li><strong>操作数永远从左到右进行运算</strong></li>
 </ul>
 <hr>
-<h1 id="数学函数、字符和字符串"><a href="#数学函数、字符和字符串" class="headerlink" title="数学函数、字符和字符串"></a>数学函数、字符和字符串</h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+<h1 id="数学函数、字符和字符串"><a href="#数学函数、字符和字符串" class="headerlink" title="数学函数、字符和字符串"></a>数学函数、字符和字符串</h1><h2 id="Math-类"><a href="#Math-类" class="headerlink" title="Math 类"></a>Math 类</h2><ul>
+<li><p>java.lang.Math</p>
+</li>
+<li><p>final 类，不能被继承</p>
+</li>
+<li><p>全部数学函数是静态方法</p>
+</li>
+<li><p>常数 PI , E</p>
+</li>
+<li><p>三角函数： <code>sin(radians),cos(toRadians()),tan(), toDegree(asin())</code></p>
+</li>
+<li><p>指数函数： <code>Math.exp(),Math.log(),Math.log10(),Math.pow(),Math.sqrt()</code></p>
+</li>
+<li><p>取整： <code>ceil(),floor(),rint(),round(),</code>  四舍五入可通过 round() 实现</p>
+</li>
+<li><p><code>Math.random()</code> :[0.0,1.0)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a+(<span class="keyword">int</span>)Math.random()*b      <span class="comment">//[a,a+b)</span></span><br><span class="line">a+(<span class="keyword">int</span>)Math.random()*(b+<span class="number">1</span>)      <span class="comment">//[a,a+b]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>char 型可以自动转成 int ，所以可以使用字符字面量代替整数值</p>
+<blockquote>
+<p>随机字符： <code>(int)Math.random()*(65535+1)</code><br><code>(char)(&#39;a&#39;+(int)Math.random*(&#39;z&#39;-&#39;a&#39;+1))    //&#39;a&#39;-&#39;z&#39;</code><br>`(char)(ch1+(int)Math.random*(ch2-ch1+1))    //ch1-ch2</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="字符-1"><a href="#字符-1" class="headerlink" title="字符"></a>字符</h2><ul>
+<li><p><code>‘\u0000’-&#39;\uffff&#39;</code>, <strong>必须四位</strong></p>
+</li>
+<li><p>特殊字符采用 \ 进行转义</p>
+</li>
+<li><p>要将浮点数转成 char 时，先把浮点数转成 int 型，然后将整数转换成 char</p>
+</li>
+<li><p>如果另外一个操作数是字符串，那么char型操作数会自动转换成字符串再和另外一个操作数字符串相连</p>
+</li>
+<li><p>char 类包装类为 Character , 为引用类型，将 char 类型封装成对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Character.isDigit()         <span class="comment">//is 开头 boolean 类型</span></span><br><span class="line">Character.isLetter()</span><br><span class="line">Character.isLetterOrDigit()</span><br><span class="line">Character.isLowerCase()</span><br><span class="line">Character.toLowerCase()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
+<li><p>java.lang.String , 固定长度的字符序列，实例化后内容不能改变</p>
+</li>
+<li><p>String 是 final 类，不能被继承</p>
+</li>
+<li><p>构造</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String newString = <span class="keyword">new</span> String(<span class="string">""</span>);</span><br><span class="line">String s = <span class="string">""</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>规范字符串和常量池</strong></p>
+<blockquote>
+<p>由于字符串是不可变的，为了提高效率和节省内存，Java中的字符串字面值维护在字符串常量池中）。这样的字符串称为规范字符串(canonical string)</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>可以使用字符串对象（假设内容为Welcome to Java）的intern方法返回规范化字符串。intern方法会在字符串常量池中找是否已存在”Welcome to Java”,如果有返回其地址。如果没有，在池中添加“Welcome to java”再返回地址。即intern方法一定返回一个指向常量池里的字符串对象引用。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"Welcome to Java"</span>;               <span class="comment">//s 在常量池</span></span><br><span class="line">String s1 = <span class="keyword">new</span> String(<span class="string">"Welcome to Java"</span>);  <span class="comment">//s1 在堆</span></span><br><span class="line">String s2 = s1.intern(); </span><br><span class="line">String s3 = <span class="string">"Welcome to Java"</span>;</span><br><span class="line">System.out.println(s1 == s); <span class="comment">//false</span></span><br><span class="line">System.out.println(s2 == s); <span class="comment">//true</span></span><br><span class="line">System.out.println(s3 == s); <span class="comment">//true</span></span><br><span class="line"><span class="comment">// 引用比较是比较是否指向同一对象</span></span><br><span class="line"><span class="comment">// 直接用字符串字面量构造的字符串在常量池里，如s。用new String方法构造的字符串在堆里，如s1。只有字面量在常量池里,例如：”Wel” + “come”，而”Wel”+new String(“come”)不在常量池里，在堆里。变量不在常量池里</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>String 类对象不可变</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s = “java”;  </span><br><span class="line">s = “HTML”;         <span class="comment">//"java" 对象引用次数为 0, 可以进行垃圾回收</span></span><br><span class="line">String t =s;        <span class="comment">//“HTML” 对象引用次数为 2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>比较</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">equals()        <span class="comment">//</span></span><br><span class="line">equalsIgnoreCase()</span><br><span class="line">s1.regionMatch(<span class="number">11</span>,s0,<span class="number">0</span>,<span class="number">4</span>)   <span class="comment">//s1 从 11 与 s2 从 0 开始的 4 个字符进行比较</span></span><br><span class="line">s1.regionMatch(<span class="keyword">true</span>,<span class="number">11</span>,s0,<span class="number">0</span>,<span class="number">4</span>)      <span class="comment">//重载 ， true 代表忽略大小写 </span></span><br><span class="line">startsWith()</span><br><span class="line">endsWith()</span><br><span class="line">s1.compareTo(s2)        <span class="comment">// 0, &gt;0, &lt;0</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="长度和单个字符"><a href="#长度和单个字符" class="headerlink" title="长度和单个字符"></a>长度和单个字符</h2><ul>
+<li><code>.length()        // 是长度，不是字符串个数</code></li>
+<li><code>charAt(index)     //0-length()-1</code></li>
+</ul>
+<h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><ul>
+<li><code>s1.concat(s2)</code> 等价于 <code>s1+s2</code></li>
+</ul>
+<h2 id="截取字串"><a href="#截取字串" class="headerlink" title="截取字串"></a>截取字串</h2><ul>
+<li>通常与 <code>indexOf()</code> 一起使用</li>
+<li><code>substring(int beginIndex, int endIndex)      // 不含 endIndex</code></li>
+<li><code>substring(int beginIndex)        // 直到结尾</code></li>
+</ul>
+<h2 id="字符串转换"><a href="#字符串转换" class="headerlink" title="字符串转换"></a>字符串转换</h2><ul>
+<li><code>toLowerCase()</code></li>
+<li><code>toUpperCase()</code></li>
+<li><code>trim()       //删除两端空格</code></li>
+<li><code>replace( “”, &quot;&quot;)</code></li>
+</ul>
+<h2 id="查找字符或字符串"><a href="#查找字符或字符串" class="headerlink" title="查找字符或字符串"></a>查找字符或字符串</h2><ul>
+<li><code>“Welcom to Java”.indexOf(&#39;a&#39;)</code></li>
+<li><code>“Welcom to Java”.indexOf(&quot;come&quot;,5)</code></li>
+<li><code>&quot;Welcome to Java&quot;.indexOf(&quot;come&quot;)</code></li>
+<li><code>“Welcom to Java”.lastIndexOf(&#39;a&#39;)</code></li>
+</ul>
+<h2 id="转换成字符数组"><a href="#转换成字符数组" class="headerlink" title="转换成字符数组"></a>转换成字符数组</h2><ul>
+<li><p><code>char[] charArray = s.toCharArray()       //charArray.length</code></p>
+</li>
+<li><p>字符数组转换为字符串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> String(<span class="keyword">new</span> <span class="keyword">char</span>[]&#123;<span class="string">'J'</span>,<span class="string">'a'</span>,<span class="string">'v'</span>,<span class="string">'a'</span>&#125;);</span><br><span class="line">String.valueOf(<span class="keyword">new</span> <span class="keyword">char</span>[]&#123;<span class="string">'J'</span>,<span class="string">'a'</span>,<span class="string">'v'</span>,<span class="string">'a'</span>&#125;);</span><br><span class="line">String.valueOf(<span class="number">2.34</span>)    <span class="comment">//2.34 -&gt; "2.34"</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="判断回文"><a href="#判断回文" class="headerlink" title="判断回文"></a>判断回文</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CheckPalindrome</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**.</span></span><br><span class="line"><span class="comment">     * Check Palindrome</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> s : String waiting for check</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> result of checking</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = s.length()-<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (low &lt; high)&#123;</span><br><span class="line">            <span class="keyword">if</span> (s.charAt(low) != s.charAt(high) )&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            low++;</span><br><span class="line">            high--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * Main Method</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args: command param</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String []args)</span></span>&#123;</span><br><span class="line">        <span class="comment">// Prompt user to enter a string</span></span><br><span class="line">        String s = JOptionPane.showInputDialog(<span class="string">"Enter a string"</span>);</span><br><span class="line">        String output=<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">if</span> (isPalindrome(s))&#123;</span><br><span class="line">            output = s + <span class="string">" is a palindrome"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            output = s + <span class="string">" is not a palindrome"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//Display the result</span></span><br><span class="line">        JOptionPane.showMessageDialog(<span class="keyword">null</span>,output);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="StringBuffer-and-StringBuilder"><a href="#StringBuffer-and-StringBuilder" class="headerlink" title="StringBuffer and StringBuilder"></a>StringBuffer and StringBuilder</h2><ul>
+<li><p>StringBuilder 与 StringBuffer ( final 类）初始化后还可以修改字符串</p>
+</li>
+<li><p>StringBuffer 修改缓冲区的方法是同步（ synchronized ）的，更适合多线程环境</p>
+</li>
+<li><p>StringBuilder 线程不安全，与 StringBuffer 工作机制类似</p>
+</li>
+<li><p>StringBuilder 与 StringBuffer 增加了 String 类没有的一些函数</p>
+<ul>
+<li>s.append().append()</li>
+<li>insert(11,””)</li>
+<li>reverse</li>
+<li>toString</li>
+<li>capacity ; length&lt;=capacity</li>
+<li>length</li>
+<li>setLength(newLength)</li>
+<li>charAt</li>
+<li>setCharAt(0,’w’)</li>
+<li>delete(8,11)</li>
+<li>deleteCharAt()</li>
+<li>replace(8,11,”Java”)</li>
+<li>所有对StringBuffer对象内容进行修改的方法，都返回指向相同StringBuffer对象的引用</li>
+<li>感觉 Java 字符串函数中的参数多给的是首尾的 index ， 而 Cpp 中多给的是首 index 和长度</li>
+</ul>
+</li>
+<li><p>another isPalindrome</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">reverse</span><span class="params">( String s)</span></span>&#123;</span><br><span class="line">    StringBuffer strBuf = <span class="keyword">new</span> StringBuffer(s);</span><br><span class="line">    strBuf.reverse();</span><br><span class="line">    <span class="keyword">return</span> strBuf.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h2><ul>
+<li><code>System.out.printf(format, item1, item2, …)</code></li>
+<li><code>String.format(format, item1, item2, …)</code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   %[argument_index$][flags][width][.precision]conversion</span><br><span class="line">   %b 布尔值		%c 字符		%d 十进制整数</span><br><span class="line">%f 浮点数		%e 科学计数法		%s 字符串</span><br><span class="line">   String s = String.format(“格式$：%<span class="number">1</span>$d,%<span class="number">2</span>$s”, <span class="number">99</span>,“abc”); <span class="comment">//结果”格式$：99，abc“</span></span><br><span class="line">   System.out.printf(<span class="string">"boolean : %6b\n"</span>, <span class="keyword">false</span>);    <span class="comment">// false</span></span><br><span class="line">   System.out.printf(<span class="string">"boolean : %6b\n"</span>, <span class="keyword">true</span>);     <span class="comment">//  true</span></span><br><span class="line">   System.out.printf(<span class="string">"character : %4c\n"</span>, <span class="string">'a'</span>);    <span class="comment">//   a</span></span><br><span class="line">   System.out.printf(<span class="string">"integer : %6d, %6d\n"</span>, <span class="number">100</span>, <span class="number">200</span>);    <span class="comment">//   100,   200</span></span><br><span class="line">   System.out.printf(<span class="string">"double : %7.2f\n"</span>, <span class="number">12.345</span>);      <span class="comment">//  12.35</span></span><br><span class="line">   System.out.printf(<span class="string">"String : %7s\n"</span>, <span class="string">"hello"</span>);       <span class="comment">//  hello</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h1><ul>
+<li>与 Cpp 完全一致</li>
+</ul>
+<h2 id="增强的-for-循环"><a href="#增强的-for-循环" class="headerlink" title="增强的 for 循环"></a>增强的 for 循环</h2><ul>
+<li>类似 Cpp <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">double</span> e:myList)&#123;      <span class="comment">//对象数组每个为引用类型</span></span><br><span class="line">    sum += e;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
       
 
       
@@ -620,6 +762,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -628,7 +778,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DataStructure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -637,18 +791,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DataStructure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
             
             <div class="clearfix"></div>
