@@ -19,7 +19,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp2.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp3.png">
-<meta property="og:updated_time" content="2020-03-09T09:36:34.177Z">
+<meta property="og:updated_time" content="2020-03-12T08:08:43.100Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
   
@@ -291,11 +291,12 @@
 <li><strong>不带任何参数</strong> 或 <strong>参数均有默认值</strong>的构造函数作为默认构造函数，默认构造函数建议写</li>
 <li>可以使用关键字 <code>=default</code> 使编译器生成隐含构造函数</li>
 <li><strong>委托构造函数</strong>使用其他构造函数实现，在参数列表中调用即可</li>
-<li>复制构造函数：使用已存在对象初始化新对象<blockquote>
-<p>形参为本类的对象引用，多为 <code>const</code></p>
-<pre><code>复制构造的另外两个时机： 形实结合、函数返回值为对象
-如果不希望对象被复制构造，在 C++11 标准中使用 `=delete` 指示即可
-**如果对象在声明的同时将另一个已存在的对象赋给它，就会调用复制构造函数；如果对象已经存在了，然后再将另一个已存在的对象赋给它，调用的就是重载赋值运算符**</code></pre></blockquote>
+<li>复制构造函数：使用已存在对象初始化新对象<ul>
+<li>形参为本类的对象引用，多为 <code>const</code></li>
+<li>复制构造的另外两个时机： 形实结合、函数返回值为对象</li>
+<li>如果不希望对象被复制构造，在 C++11 标准中使用 <code>=delete</code> 指示即可</li>
+<li><strong>如果对象在声明的同时将另一个已存在的对象赋给它，就会调用复制构造函数；如果对象已经存在了，然后再将另一个已存在的对象赋给它，调用的就是重载赋值运算符</strong></li>
+</ul>
 </li>
 </ul>
 <h2 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h2><ul>
@@ -489,16 +490,17 @@
 </ul>
 </li>
 <li><p>常用操作</p>
-<blockquote>
-<p>s + t 将串s和t连接成一个新串</p>
-<pre><code>s = t 用t更新s
-s == t 判断s与t是否相等
-s != t 判断s与t是否不等
-s &lt; t 判断s是否小于t（按字典顺序比较）
-s &lt;= t 判断s是否小于或等于t （按字典顺序比较）
-s &gt; t 判断s是否大于t （按字典顺序比较）
-s &gt;= t 判断s是否大于或等于t （按字典顺序比较）
-s[i] 访问串中下标为i的字符，从 0 开始</code></pre></blockquote>
+<ul>
+<li>s + t 将串s和t连接成一个新串</li>
+<li>s = t 用t更新s</li>
+<li>s == t 判断s与t是否相等</li>
+<li>s != t 判断s与t是否不等</li>
+<li>s &lt; t 判断s是否小于t（按字典顺序比较）</li>
+<li>s &lt;= t 判断s是否小于或等于t （按字典顺序比较）</li>
+<li>s &gt; t 判断s是否大于t （按字典顺序比较）</li>
+<li>s &gt;= t 判断s是否大于或等于t （按字典顺序比较）</li>
+<li>s[i] 访问串中下标为i的字符，从 0 开始</li>
+</ul>
 </li>
 <li><p>getline可以输入整行字符串（要包string头文件）</p>
 </li>
@@ -515,7 +517,112 @@ s[i] 访问串中下标为i的字符，从 0 开始</code></pre></blockquote>
 </li>
 </ul>
 <hr>
-<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2><hr>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><ul>
+<li><code>: 继承方式1 基类名1 继承方式2 基类名2</code></li>
+<li>派生类的构成<ul>
+<li>吸收基类成员，一般不继承构造函数和析构函数</li>
+<li>改造基类成员</li>
+<li>新增新的成员</li>
+</ul>
+</li>
+</ul>
+<h2 id="继承方式"><a href="#继承方式" class="headerlink" title="继承方式"></a>继承方式</h2><ul>
+<li><p>公有继承 public</p>
+<ul>
+<li>访问属性不变</li>
+<li>派生类的成员函数不能直接访问基类的私有成员，公有成员和保护成员可以访问</li>
+<li>派生类的对象可以访问基类的 public 成员</li>
+</ul>
+</li>
+<li><p>私有继承 private</p>
+<ul>
+<li>访问属性变成 private</li>
+<li>派生类的成员函数不能直接访问基类的私有成员，公有成员和保护成员可以访问</li>
+<li>派生类的对象不能访问基类的任何成员</li>
+</ul>
+</li>
+<li><p>保护继承 protected</p>
+<ul>
+<li>public,protected 访问属性变成 protected</li>
+<li>派生类可以直接访问基类的 protected 成员</li>
+<li>派生类的对象不能访问基类任何成员</li>
+</ul>
+</li>
+</ul>
+<h2 id="基类与派生类的类型转换"><a href="#基类与派生类的类型转换" class="headerlink" title="基类与派生类的类型转换"></a>基类与派生类的类型转换</h2><ul>
+<li><p><strong>公有</strong>派生类对象可以被当作基类的对象使用，反之则不可</p>
+<ul>
+<li>派生类的对象可以隐含转换为基类对象</li>
+<li>派生类的对象可以初始化基类的引用</li>
+<li>派生类的指针可以隐含转换为基类的指针</li>
+</ul>
+</li>
+<li><p>通过基类对象名、指针<strong>只能使用从基类继承的成员</strong></p>
+</li>
+<li><p><strong>不要重新定义非继承来的非虚函数</strong></p>
+</li>
+</ul>
+<h2 id="派生类的构造和析构函数"><a href="#派生类的构造和析构函数" class="headerlink" title="派生类的构造和析构函数"></a>派生类的构造和析构函数</h2><ul>
+<li><p>默认情况下基类的构造函数不被继承，派生类需要自己完成构造函数</p>
+</li>
+<li><p>C++11 规定可以使用 <code>using B::B</code> 继承基类的构造函数，但是只能初始化从基类继承的成员</p>
+</li>
+<li><p><strong>建议派生类自己写构造函数</strong></p>
+</li>
+<li><p>继承来的成员：自动调用基类构造函数进行初始化,派生类的构造函数需要给基类的构造函数传递参数</p>
+</li>
+<li><p>单继承</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">派生类名::派生类名(基类所需的形参，本类成员所需的形参):</span><br><span class="line">基类名(参数表), 本类成员初始化列表</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//其他初始化；</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li><p>多继承，需要给多个基类的构造函数传递参数</p>
+<blockquote>
+<p>当基类有默认构造函数时,派生类构造函数可以不向基类构造函数传递参数;构造派生类的对象时，基类的默认构造函数将被调用;如需执行基类中带参数的构造函数,派生类构造函数应为基类构造函数提供参数</p>
+</blockquote>
+</li>
+<li><p>多继承且有组合类的情况</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">派生类名::派生类名(形参表):</span><br><span class="line">基类名<span class="number">1</span>(参数), 基类名<span class="number">2</span>(参数), ..., 基类名n(参数), </span><br><span class="line">本类成员（含对象成员）初始化列表</span><br><span class="line">&#123;</span><br><span class="line">        <span class="comment">//其他初始化</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>执行顺序：先调用基类构造函数，顺序按照它们被继承时声明的顺序（从左向右）;再对初始化列表中的成员进行初始化，顺序按照它们在类中定义的顺序，对象成员初始化时自动调用其所属类的构造函数。由初始化列表提供参数</p>
+</blockquote>
+</li>
+<li><p>复制构造函数，只能有一个参数</p>
+<blockquote>
+<p><code>C::C(const C &amp;c1): B(c1) {…}</code> </p>
+</blockquote>
+</li>
+<li><p>析构函数</p>
+<ul>
+<li>不被继承</li>
+<li>不需要显式调用基类的析构函数</li>
+<li>先执行派生类的析构函数，再执行基类的析构函数，<strong>与构造函数的顺序相反</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="访问从基类继承的成员"><a href="#访问从基类继承的成员" class="headerlink" title="访问从基类继承的成员"></a>访问从基类继承的成员</h2><ul>
+<li><p>当派生类与基类中有相同成员时:</p>
+<ul>
+<li>若未特别限定，则通过派生类对象使用的是派生类中的同名成员</li>
+<li>如要通过派生类对象访问基类中被隐藏的同名成员，应使用基类名和作用域操作符（::）来限定;  <code>d.Base1::func()</code></li>
+</ul>
+</li>
+<li><p>如果从不同基类继承了同名成员，但是在派生类中没有定义同名成员，也可以通过类名限定来解决</p>
+</li>
+</ul>
+<h2 id="虚基类"><a href="#虚基类" class="headerlink" title="虚基类"></a>虚基类</h2><ul>
+<li><p>当派生类从多个基类派生，而这些基类又共同基类，则在访问此共同基类中的成员时，将产生冗余，并有可能因冗余带来不一致性</p>
+</li>
+<li><p><code>class B1:virtual public B</code></p>
+</li>
+<li><p>为最远的派生类提供唯一的基类成员，而不重复产生多次复制</p>
+</li>
+<li><p><strong>在第一级继承时就要将共同基类设计为虚基类</strong></p>
+</li>
+<li><p>直接或间接继承虚基类的所有派生类，都必须在构造函数的成员初始化表中为虚基类的构造函数列出参数。如果未列出，则表示调用该虚基类的默认构造函数</p>
+</li>
+<li><p>在建立对象时，只有最远派生类的构造函数调用虚基类的构造函数，其他类对虚基类构造函数的调用被忽略</p>
+</li>
+</ul>
+<hr>
+<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><hr>
 
       
 
@@ -748,19 +855,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -772,11 +883,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
             
             <div class="clearfix"></div>

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="KJay的博客">
 <meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程   概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-10T14:43:28.089Z">
+<meta property="og:updated_time" content="2020-03-12T07:21:06.391Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
@@ -230,50 +230,45 @@
 <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ul>
 <li><p>编写源代码，后缀名为 .java ; 文件名必须和公共类名一致 (公共类不能超过一个) ，如果有多个类且无 public 类，文件名可与任意类名相同，<strong>有多少个 class 文件编译就会生成多个 .class 文件</strong></p>
 </li>
-<li><p>编译， 生成 .class 字节码文件</p>
-<blockquote>
-<p><code>javac 源文件名（确保能找到）</code></p>
-</blockquote>
+<li><p>编译， 生成 .class 字节码文件  <code>javac 源文件名（确保能找到）</code></p>
 </li>
 <li><p>执行</p>
-<blockquote>
-<p><code>java 启动类完全限定类名（需设置好 classpath 环境变量）</code><br>启动类必须有 <code>public static void main(String[] args)</code> 函数</p>
-</blockquote>
+<ul>
+<li><code>java 启动类完全限定类名（需设置好 classpath 环境变量）</code></li>
+<li>启动类必须有 <code>public static void main(String[] args)</code> 函数</li>
+</ul>
 </li>
 <li><p>Intellij Idea tips</p>
-<blockquote>
-<p>首先新建 bin 目录存放编译后的字节码文件，需要在设置中对默认路径进行更改<br>需要新建包名，包名从左至右级别降低，与域名相反</p>
-</blockquote>
+<ul>
+<li>首先新建 bin 目录存放编译后的字节码文件，需要在设置中对默认路径进行更改</li>
+<li>需要新建包名，包名从左至右级别降低，与域名相反</li>
+</ul>
 </li>
 </ul>
 <h2 id="程序剖析"><a href="#程序剖析" class="headerlink" title="程序剖析"></a>程序剖析</h2><ul>
-<li>注释<blockquote>
-<p>单行注释： <code>//</code><br>多行注释： <code>/**/</code><br>文档注释： <code>/**    */</code> ; 可使用 javadoc 命令提取注释</p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>javadoc<br>注释对象： 类、类的方法、类的数据成员<br>Intellij Idea 中 Tools Generate Javadoc </p>
-</blockquote>
+<li><p>注释</p>
 <ul>
+<li>单行注释： <code>//</code></li>
+<li>多行注释： <code>/**/</code></li>
+<li>文档注释： <code>/**    */</code> ; 可使用 javadoc 命令提取注释   </li>
+<li>javadoc</li>
+<li>注释对象： 类、类的方法、类的数据成员</li>
+<li>Intellij Idea 中 Tools Generate Javadoc </li>
+</ul>
+</li>
 <li><p>保留字</p>
 </li>
-<li><p>修饰符</p>
-<blockquote>
-<p>修饰类、方法、数据的属性及用法</p>
-</blockquote>
+<li><p>修饰符:修饰类、方法、数据的属性及用法</p>
 </li>
 <li><p><strong>方法必须通过对象或类调用</strong> , 被类名调用的方法为静态方法</p>
 </li>
 <li><p>main 方法以及 init 方法</p>
-<blockquote>
-<p>Java Application : main 方法为入口<br>Java Applet : init() 为入口</p>
-</blockquote>
+<ul>
+<li>Java Application : main 方法为入口</li>
+<li>Java Applet : init() 为入口</li>
+</ul>
 </li>
-<li><p>消息框</p>
-<blockquote>
-<p>可以使用 <code>JOptionPane</code> 的 <code>showMessageDialog</code> 方法显示消息文本</p>
-</blockquote>
+<li><p>消息框,可以使用 <code>JOptionPane</code> 的 <code>showMessageDialog</code> 方法显示消息文本</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.swing.JOptionPane;</span><br><span class="line">JOptionPane.showMessageDialog(<span class="keyword">null</span>,<span class="string">"Dialog message"</span>, <span class="string">"Dialogtitle"</span>,JOptionPane.QUESTION_MESSAGE);</span><br></pre></td></tr></table></figure>
 
 </li>
@@ -287,18 +282,19 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"><span class="comment">//构造函数Scanner的参数类型也可为java.io.File</span></span><br><span class="line"><span class="comment">//这是Scanner就从文件而不是标准输入流读取数据</span></span><br><span class="line"><span class="keyword">double</span> d = scanner.nextDouble( ); </span><br><span class="line">方法：</span><br><span class="line">    nextByte()、nextShort()、nextInt()</span><br><span class="line">    nextLong()、nextFloat()、nextDouble()</span><br><span class="line">    next() 读入一个字符串</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>如果输入不合法，会抛出异常</p>
-</blockquote>
+<ul>
+<li>如果输入不合法，会抛出异常</li>
+</ul>
 <h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><ul>
 <li><p>与 Cpp 类似</p>
 </li>
 <li><p>通常编译器接受前 128 个字符</p>
 </li>
 <li><p>常量</p>
-<blockquote>
-<p>与 Cpp 不同，使用 <code>final</code> 关键字<br>常量名应全大写，中间用下划线隔开不同单词</p>
-</blockquote>
+<ul>
+<li>与 Cpp 不同，使用 <code>final</code> 关键字</li>
+<li>常量名应全大写，中间用下划线隔开不同单词</li>
+</ul>
 </li>
 </ul>
 <h2 id="赋值表达式"><a href="#赋值表达式" class="headerlink" title="赋值表达式"></a>赋值表达式</h2><ul>
@@ -402,9 +398,11 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a+(<span class="keyword">int</span>)Math.random()*b      <span class="comment">//[a,a+b)</span></span><br><span class="line">a+(<span class="keyword">int</span>)Math.random()*(b+<span class="number">1</span>)      <span class="comment">//[a,a+b]</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>char 型可以自动转成 int ，所以可以使用字符字面量代替整数值</p>
-<blockquote>
-<p>随机字符： <code>(int)Math.random()*(65535+1)</code><br><code>(char)(&#39;a&#39;+(int)Math.random*(&#39;z&#39;-&#39;a&#39;+1))    //&#39;a&#39;-&#39;z&#39;</code><br>`(char)(ch1+(int)Math.random*(ch2-ch1+1))    //ch1-ch2</p>
-</blockquote>
+<ul>
+<li>随机字符： <code>(int)Math.random()*(65535+1)</code></li>
+<li><code>(char)(&#39;a&#39;+(int)Math.random*(&#39;z&#39;-&#39;a&#39;+1))    //&#39;a&#39;-&#39;z&#39;</code></li>
+<li>`(char)(ch1+(int)Math.random*(ch2-ch1+1))    //ch1-ch2</li>
+</ul>
 </li>
 </ul>
 <h2 id="字符-1"><a href="#字符-1" class="headerlink" title="字符"></a>字符</h2><ul>
@@ -762,19 +760,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -786,11 +788,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
             
             <div class="clearfix"></div>
