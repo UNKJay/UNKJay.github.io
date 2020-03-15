@@ -19,7 +19,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp2.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp3.png">
-<meta property="og:updated_time" content="2020-03-12T08:08:43.100Z">
+<meta property="og:updated_time" content="2020-03-15T08:18:48.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;cpp1.png">
   
@@ -360,7 +360,7 @@
 </li>
 <li><p>常引用相当于只读的引用</p>
 </li>
-<li><p>常数据成员可以在类定义的时候进行初始化<br>函数</p>
+<li><p>常数据成员可以在类定义的时候进行初始化</p>
 </li>
 <li><p>一般的文件组织结构如下</p>
 <ul>
@@ -622,7 +622,72 @@
 </li>
 </ul>
 <hr>
-<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><hr>
+<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><h2 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h2><ul>
+<li><p><strong>有部分运算符不能重载，比如三元运算符，::运算符和.运算符,且部分运算符不能重载为成员函数</strong></p>
+</li>
+<li><p>双目运算符</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">函数类型  <span class="keyword">operator</span> 运算符（形参）</span><br><span class="line">&#123;</span><br><span class="line">       ......</span><br><span class="line">&#125;</span><br><span class="line">参数个数=原操作数个数<span class="number">-1</span>   （后置++、--除外）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>单目运算符</p>
+<ul>
+<li>前置： 表达式 <code>U oprd</code> 相当于 <code>oprd.operator U()</code></li>
+<li>后置： 表达式 <code>oprd++</code> 相当于 <code>oprd.operator ++(0)</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Clock &amp; Clock::<span class="keyword">operator</span> ++ () &#123; </span><br><span class="line">    second++;</span><br><span class="line">    <span class="keyword">if</span> (second &gt;= <span class="number">60</span>) &#123;</span><br><span class="line">        second -= <span class="number">60</span>;  minute++;</span><br><span class="line">        <span class="keyword">if</span> (minute &gt;= <span class="number">60</span>) &#123;</span><br><span class="line">        minute -= <span class="number">60</span>; hour = (hour + <span class="number">1</span>) % <span class="number">24</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Clock Clock::<span class="keyword">operator</span> ++ (<span class="keyword">int</span>) &#123;</span><br><span class="line">    <span class="comment">//注意形参表中的整型参数</span></span><br><span class="line">    Clock old = *<span class="keyword">this</span>;</span><br><span class="line">    ++(*<span class="keyword">this</span>);  <span class="comment">//调用前置“++”运算符</span></span><br><span class="line">    <span class="keyword">return</span> old;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//前置运算符先自增，后返回本身，为引用类型; 后置运算符调用前置运算符，返回副本</span></span><br><span class="line"><span class="comment">//最好使用前置运算符</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>左操作数</strong>不是类的对象，重载为非成员函数<ul>
+<li>形参为原操作数个数（后置++、–除外），函数的形参代表依自左至右次序排列的各操作数</li>
+<li>后置单目运算符 ++和–的重载函数，形参列表中要增加一个int，但不必写形参名</li>
+<li>至少应该有一个自定义类型的参数</li>
+<li>如果在运算符的重载函数中需要操作某类对象的私有成员，可以<strong>将此函数声明为该类的友元</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h2><ul>
+<li><p>虚函数必须是非静态的成员函数，虚函数经过派生之后，就可以实现运行过程中的多态</p>
+</li>
+<li><p>一般成员函数可以是虚函数; <strong>构造函数不能是虚函数</strong>; <strong>析构函数可以是虚函数</strong></p>
+</li>
+<li><p><strong>不能是内联函数</strong></p>
+</li>
+<li><p><strong>虚函数声明只能出现在类定义中的函数原型声明中，而不能在成员函数实现的时候</strong></p>
+</li>
+<li><p>派生类中的虚函数还会隐藏基类中同名函数的所有其它重载形式</p>
+</li>
+<li><p>一般习惯于在派生类的函数中也使用virtual关键字，以增加程序的可读性</p>
+</li>
+<li><p>虚析构函数</p>
+<ul>
+<li>可能通过基类指针删除派生类对象， <code>delete</code></li>
+</ul>
+</li>
+<li><p>虚表</p>
+<ul>
+<li>每个多态类有一个虚表，每个对象有一个指向当前类的虚表的指针</li>
+<li>虚表中有当前类的各个虚函数的入口地址</li>
+</ul>
+</li>
+</ul>
+<h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><ul>
+<li><p>纯虚函数是一个在基类中声明的虚函数，它在该基类中没有定义具体的操作内容，要求各派生类根据实际需要定义自己的版本，纯虚函数的声明格式为： <code>virtual 函数类型 函数名(参数表) = 0;</code></p>
+</li>
+<li><p>带有纯虚函数的类称为抽象类，不能定义对象</p>
+</li>
+<li><p>只能作为基类使用</p>
+</li>
+</ul>
+<h2 id="override-final"><a href="#override-final" class="headerlink" title="override final"></a>override final</h2><ul>
+<li>override 显式覆盖</li>
+<li>final <ul>
+<li>希望基类不被继承</li>
+<li>希望某个函数不被覆盖</li>
+</ul>
+</li>
+</ul>
+<hr>
 
       
 
@@ -859,19 +924,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">cpp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -883,7 +940,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
             
             <div class="clearfix"></div>
