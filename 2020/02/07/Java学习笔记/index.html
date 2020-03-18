@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="KJay的博客">
 <meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程   概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-12T07:21:06.391Z">
+<meta property="og:updated_time" content="2020-03-17T10:46:42.773Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
@@ -194,39 +194,47 @@
 </li>
 <li><p>Java 虚拟机是一个用于解释字节码的软件，有一套虚拟的 CPU 指令集及汇编指令，.class 文件包含了 JVM 的 CPU 指令集。</p>
 </li>
-<li><p>安装 JDK</p>
-<blockquote>
-<p>Windows 下安装使用安装程序即可，需要记住安装目录<br>通过环境变量 JAVA_HOME 切换不同 JDK版本<br>/bin 包含 javac,java,jdb 等工具<br>/jre 为 Java 运行环境，即 JVM</p>
-</blockquote>
-</li>
+<li><p>Windows 安装 JDK</p>
+<ul>
+<li>Windows 下安装使用安装程序即可，需要记住安装目录</li>
+<li>通过环境变量 JAVA_HOME 切换不同 JDK版本</li>
+<li>/bin 包含 javac,java,jdb 等工具</li>
+<li>/jre 为 Java 运行环境，即 JVM</li>
 </ul>
-<blockquote>
-<p>Linux </p>
-</blockquote>
+</li>
+<li><p>Linux</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jvm/default</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOEM&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br></pre></td></tr></table></figure>
-
+</li>
+<li><p>配置</p>
 <ul>
-<li>配置<blockquote>
-<p>Windows:<br>JAVA_HOME 指向安装目录<br>%JAVA_HOME%/bin 添加到环境变量 PATH 中<br>使用命令行运行时需要配置环境变量 CLASSPATH ，作用是让JVM 能够找到运行的Java 类，需要指定 <strong>class 文件所属包的顶级目录；如果多个class文件被打包到 jar 文件，则一定要指定到 jar 文件（而不是 jar 文件所在的目录，因为 .jar 件本质上就是一个目录）</strong>   </p>
-</blockquote>
+<li>Windows:</li>
+<li>JAVA_HOME 指向安装目录</li>
+<li>%JAVA_HOME%/bin 添加到环境变量 PATH 中</li>
+<li>使用命令行运行时需要配置环境变量 CLASSPATH ，作用是让JVM 能够找到运行的Java 类，需要指定 <strong>class 文件所属包的顶级目录；如果多个class文件被打包到 jar 文件，则一定要指定到 jar 文件（而不是 jar 文件所在的目录，因为 .jar 件本质上就是一个目录）</strong>   </li>
+</ul>
+</li>
+<li><p>Linux 安装即配置好，可通过 <code>echo $PATH</code> 查看环境变量</p>
 </li>
 </ul>
-<blockquote>
-<p>Linux 安装即配置好，可通过 <code>echo $PATH</code> 查看环境变量</p>
-</blockquote>
 <h2 id="命令行运行"><a href="#命令行运行" class="headerlink" title="命令行运行"></a>命令行运行</h2><ul>
-<li>Windows<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_151</span><br><span class="line">set PROJECT_HOME=E:\chapter1</span><br><span class="line">set path=%path%;%JAVA_HOME%\bin</span><br><span class="line">set classpath=%classpath%;%PROJECT_HOME%\class</span><br><span class="line">java -classpath "%classpath%" homework.ch1.Welcome</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
-
+<li><p>Windows</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_151</span><br><span class="line">set PROJECT_HOME=E:\chapter1</span><br><span class="line">set path=%path%;%JAVA_HOME%\bin</span><br><span class="line">set classpath=%classpath%;%PROJECT_HOME%\class</span><br><span class="line">java -classpath "%classpath%" homework.ch1.Welcome</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<blockquote>
-<p>若已经设置好的环境变量可不再重新设置<br>带分号的目的是保留原有的不变,带引号的目的是消去空格的影响<br>需要带包名限定，<strong>不带 class 后缀名</strong><br>带 -classpath 选项，也可以是 -cp<br>图形化界面设置环境变量在系统属性中的环境变量</p>
-</blockquote>
-<ul>
-<li>Linux</li>
-</ul>
+<li><p>若已经设置好的环境变量可不再重新设置</p>
+</li>
+<li><p>带分号的目的是保留原有的不变,带引号的目的是消去空格的影响</p>
+</li>
+<li><p>需要带包名限定，<strong>不带 class 后缀名</strong> </p>
+</li>
+<li><p>带 -classpath 选项，也可以是 -cp </p>
+</li>
+<li><p>图形化界面设置环境变量在系统属性中的环境变量</p>
+</li>
+<li><p>Linux</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PROJECT_PATH=/home/pkj/chapter1</span><br><span class="line">classpath=<span class="variable">$PROJECT_PATH</span>/jar/run.jar</span><br><span class="line">java -cp <span class="variable">$classpath</span> homework.ch1.Welcome</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
 <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ul>
 <li><p>编写源代码，后缀名为 .java ; 文件名必须和公共类名一致 (公共类不能超过一个) ，如果有多个类且无 public 类，文件名可与任意类名相同，<strong>有多少个 class 文件编译就会生成多个 .class 文件</strong></p>
 </li>
@@ -280,7 +288,7 @@
 <li>标准输入流： System.in</li>
 <li>Scanner 类 (java.util.Scanner)</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"><span class="comment">//构造函数Scanner的参数类型也可为java.io.File</span></span><br><span class="line"><span class="comment">//这是Scanner就从文件而不是标准输入流读取数据</span></span><br><span class="line"><span class="keyword">double</span> d = scanner.nextDouble( ); </span><br><span class="line">方法：</span><br><span class="line">    nextByte()、nextShort()、nextInt()</span><br><span class="line">    nextLong()、nextFloat()、nextDouble()</span><br><span class="line">    next() 读入一个字符串</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"><span class="comment">//构造函数Scanner的参数类型也可为java.io.File</span></span><br><span class="line"><span class="comment">//这是Scanner就从文件而不是标准输入流读取数据</span></span><br><span class="line"><span class="keyword">double</span> d = scanner.nextDouble( ); </span><br><span class="line">方法：</span><br><span class="line">    nextByte()、nextShort()、nextInt()</span><br><span class="line">    nextLong()、nextFloat()、nextDouble()</span><br><span class="line">    next() 读入一个字符串</span><br><span class="line">    nextLine() 一整行</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>如果输入不合法，会抛出异常</li>
@@ -764,11 +772,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -780,15 +792,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
             
             <div class="clearfix"></div>
