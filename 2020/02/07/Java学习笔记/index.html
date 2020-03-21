@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="KJay的博客">
 <meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程   概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-17T10:46:42.773Z">
+<meta property="og:updated_time" content="2020-03-21T14:22:27.791Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
@@ -525,12 +525,54 @@
 
 </li>
 </ul>
+<hr>
 <h1 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h1><ul>
 <li>与 Cpp 完全一致</li>
 </ul>
 <h2 id="增强的-for-循环"><a href="#增强的-for-循环" class="headerlink" title="增强的 for 循环"></a>增强的 for 循环</h2><ul>
-<li>类似 Cpp <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">double</span> e:myList)&#123;      <span class="comment">//对象数组每个为引用类型</span></span><br><span class="line">    sum += e;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>类似 Cpp <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">double</span> e:myList)&#123;      <span class="comment">//对象数组每个为引用类型</span></span><br><span class="line">    sum += e;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
+<hr>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><h2 id="方法定义"><a href="#方法定义" class="headerlink" title="方法定义"></a>方法定义</h2><ul>
+<li>和 <code>C++</code> 类似</li>
+<li>方法签名： 方法名称 + 形参列表</li>
+<li>形参可以用 <code>final</code> 修饰，代表方法不能修改其值</li>
+<li><strong>形参不能使用默认值，最后一个为可变长参数，用 … 或数组定义</strong></li>
+<li>方法里不能定义 <code>static</code> 局部变量</li>
+</ul>
+<h2 id="调用方法"><a href="#调用方法" class="headerlink" title="调用方法"></a>调用方法</h2><ul>
+<li><p>静态方法和实例方法</p>
+<ul>
+<li>实例方法必须用对象名调用（对象名：指向对象的引用变量名）</li>
+<li>静态方法：可用类名调用，也可用对象名调用，<strong>提倡用”类名.方法名“调用</strong></li>
+</ul>
+</li>
+<li><p>调用当前类中的静态方法：可直接用“方法名”，也可<strong>用”类名.方法名“（推荐）</strong></p>
+</li>
+<li><p>调用当前类中的实例方法可用“方法名” 或 <strong>“this.方法名”调用（推荐）</strong></p>
+</li>
+<li><p>所有静态方法提倡用”类名.方法名“调用（这样可读性好，一看到类名，就知道调用的是静态方法）</p>
+</li>
+<li><p>子类实例函数里用” super.方法名“调用父类实例方法。（super是引用，通过super只能调用实例方法）</p>
+</li>
+</ul>
+<h2 id="方法的参数传递"><a href="#方法的参数传递" class="headerlink" title="方法的参数传递"></a>方法的参数传递</h2><ul>
+<li>实参的类型必须与形参兼容：子类实参可以传递给父类形参</li>
+<li>基本数据类型的参数传递是<strong>传值</strong></li>
+<li>引用类型是引用调用</li>
+</ul>
+<h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h2><ul>
+<li>与 <code>C++</code> 类似</li>
+</ul>
+<h2 id="方法局部变量的作用域"><a href="#方法局部变量的作用域" class="headerlink" title="方法局部变量的作用域"></a>方法局部变量的作用域</h2><ul>
+<li>方法中的局部变量相当于形参，需要压栈</li>
+<li><strong>局部变量使用前必须赋值</strong></li>
+<li><strong>不能在嵌套的块里声明同名的变量，不像 <code>C++</code> 那样可以屏蔽影响</strong></li>
+</ul>
+<hr>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2><hr>
 
       
 
@@ -772,11 +814,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -784,7 +826,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -793,10 +839,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
             
             <div class="clearfix"></div>
