@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="KJay的博客">
 <meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程   概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-23T02:48:12.486Z">
+<meta property="og:updated_time" content="2020-03-23T14:02:04.774Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
@@ -308,7 +308,7 @@
 <h2 id="赋值表达式"><a href="#赋值表达式" class="headerlink" title="赋值表达式"></a>赋值表达式</h2><ul>
 <li>右结合， <code>i=j=k=1</code></li>
 <li>局部变量使用前必须赋初值</li>
-<li>类的成员变量默认初值为 0</li>
+<li><strong>类的成员变量默认初值为 0</strong></li>
 </ul>
 <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
 <li>值类型： byte,short,int,long,char,float,double,boolean</li>
@@ -569,7 +569,7 @@
 <h2 id="方法局部变量的作用域"><a href="#方法局部变量的作用域" class="headerlink" title="方法局部变量的作用域"></a>方法局部变量的作用域</h2><ul>
 <li>方法中的局部变量相当于形参，需要压栈</li>
 <li><strong>局部变量使用前必须赋值</strong></li>
-<li><strong>不能在嵌套的块里声明同名的变量，不像 <code>C++</code> 那样可以屏蔽影响</strong></li>
+<li><strong>不能在嵌套的块里声明同名的变量，不像 <code>C++</code> 那样可以屏蔽影响，但是类的实例变量却可以</strong></li>
 </ul>
 <hr>
 <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
@@ -616,7 +616,138 @@
 </li>
 </ul>
 <hr>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><hr>
+<h1 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h1><h2 id="基础-1"><a href="#基础-1" class="headerlink" title="基础"></a>基础</h2><ul>
+<li><p>默认访问权限为包级，即可以被同一个package的代码访问的成员。<strong>Java 无 friend</strong>，<strong>无析构函数</strong>，垃圾自动回收</p>
+</li>
+<li><p>Java 无 struct 和 union</p>
+</li>
+<li><p>数据成员可以直接给初值</p>
+</li>
+<li><p><strong>当创建对象数组时，数组元素的缺省初值是 null ，别忘了</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Circle[] circleArray = <span class="keyword">new</span> Circle[<span class="number">10</span>];</span><br><span class="line"><span class="comment">//此时没有构造 Circle 对象，指示构造数组</span></span><br><span class="line"><span class="comment">//和 C++ 不同，此时不会调用构造函数，而 C++ 会</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><ul>
+<li>如果定义 <code>void className()</code> ，被认为是普通方法，不会报错</li>
+<li>无析构函数，垃圾回收会自动调用 <code>finalize()</code> 方法，可以覆盖定义该函数，但是调用时机无法控制</li>
+</ul>
+<h2 id="this-引用"><a href="#this-引用" class="headerlink" title="this 引用"></a>this 引用</h2><ul>
+<li>相当于 C++ 中的 this 指针，访问当前对象成员</li>
+<li>不能对 this 进行赋值</li>
+</ul>
+<h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><ul>
+<li>包是一组相关的类和接口的集合，就是 C++ 中的 namespace</li>
+<li>在同一个package里不能定义同名的标识符（类名，接口名，枚举名）</li>
+<li>package语句必须出现在.java文件第一行，前面不能有注释行也不能有空白行，该.java文件里定义的所有内容（类、接口、枚举）都属于package所定义的包里。如果.java文件第一行没有package语句，则该文件定义的所有内容位于default包（缺省名字空间），但不推荐<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java.util.Arrays.sort();</span><br><span class="line"><span class="comment">//import java.util.Arrays;  //单类型导入</span></span><br><span class="line"><span class="comment">//import java.util.*;       //按需导入，不是全导入</span></span><br><span class="line"><span class="comment">//Array.sort()</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> p2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> p1.*;  <span class="comment">//按需导入，没有马上把p1.A引入到当前域</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//因此当前文件里可以定义A</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        A a1 = <span class="keyword">new</span> A();     <span class="comment">//这时A是p2.A</span></span><br><span class="line">        System.out.println(a1 <span class="keyword">instanceof</span> p2.A); <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//当前域已经定义了A，因此要想使用package p1里的A，</span></span><br><span class="line">    <span class="comment">//只能用完全限定名</span></span><br><span class="line">        p1.A a2 = <span class="keyword">new</span> p1.A();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> p3;</span><br><span class="line"><span class="comment">//可以按需导入，没有马上把p1.A，p2.A引入到当前域</span></span><br><span class="line"><span class="comment">//因此下面二个import不会保错</span></span><br><span class="line"><span class="keyword">import</span> p1.*;</span><br><span class="line"><span class="keyword">import</span> p2.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</span><br><span class="line"><span class="comment">//当名字被使用时二义性才被检测</span></span><br><span class="line">    A a; <span class="comment">//报错，Reference to A is a ambiguous, p1.A and p2.A match; </span></span><br><span class="line">    p1.A a1; <span class="comment">//这时只能用完全限定名</span></span><br><span class="line">    p2.A a2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> p3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> p1.A;</span><br><span class="line"><span class="keyword">import</span> p2.A;  <span class="comment">//报错，p1.A is already defined in a single type import</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>包的命名习惯: 将Internet域名作为包名 （但级别顺序相反），这样的好处是避免包名的重复</li>
+</ul>
+<h2 id="实例（或静态）"><a href="#实例（或静态）" class="headerlink" title="实例（或静态）"></a>实例（或静态）</h2><ul>
+<li><p>析构</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span>           <span class="comment">//注解，告诉编译器这是覆盖父类的方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    staticNumber--;</span><br><span class="line">    <span class="keyword">super</span>.finalize();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实例变量和静态变量</p>
+</li>
+<li><p>final 修饰方法</p>
+<ul>
+<li>final修饰实例方法时，表示该方法不能被子类覆盖(Override) 。非final实例方法可以被子类覆盖</li>
+<li>final修饰静态方法时，表示该方法不能被子类隐藏(Hiding)。非final静态方法可以被子类隐藏</li>
+</ul>
+</li>
+<li><p>构造函数不能为final的</p>
+</li>
+<li><p>方法重载 (Overload) 、方法覆盖 (Override) 、方法隐藏 (Hiding)</p>
+<ul>
+<li>方法覆盖和方法隐藏：发生在父类和子类之间，前提是继承。子类中定义的方法与父类中的方法具有<strong>相同的方法名字</strong>、<strong>相同的参数列表</strong>、<strong>相同的返回类型</strong>（也允许子类中方法的返回类型是父类中方法返回类型的子类）</li>
+<li>方法覆盖：实例方法</li>
+<li>方法隐藏：静态方法</li>
+</ul>
+</li>
+</ul>
+<h2 id="可见性修饰符"><a href="#可见性修饰符" class="headerlink" title="可见性修饰符"></a>可见性修饰符</h2><ul>
+<li><p>类访问控制符： public 和 包级（默认）</p>
+</li>
+<li><p>类的成员访问控制符： private,protected,public 和 包级</p>
+</li>
+<li><p><strong>Java 继承时无继承控制(见继承，即都是公有继承，和C++不同)，故父类成员继承到派生类时访问权限保持不变</strong></p>
+</li>
+<li><p>类类体中可以访问从父类继承来的protected成员 。<strong>但如果子类和父类不在同一个包里</strong>，<strong>子类里不能访问另外父类实例（非继承）的protected成员</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> h = o.u;    <span class="comment">//error</span></span><br><span class="line"><span class="keyword">int</span> i = u + <span class="keyword">super</span>.u;    <span class="comment">//OK</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问控制针对的是类型而不是变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> x;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">m</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Foo foo = <span class="keyword">new</span> Foo();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//因为对象foo在Foo类内使用，所以可以访问私有成员x</span></span><br><span class="line">        <span class="keyword">boolean</span> b = foo.x <span class="comment">//ok</span></span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="this-引用-1"><a href="#this-引用-1" class="headerlink" title="this 引用"></a>this 引用</h2><ul>
+<li>在实例方法中，实例变量被同名局部变量或方法形参隐藏，可以通过this.instanceVariable访问实例变量<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">double</span> k = <span class="number">0.0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setI</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.i= i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setK</span><span class="params">(<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        Foo.k = k;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<h1 id="继承和多态"><a href="#继承和多态" class="headerlink" title="继承和多态"></a>继承和多态</h1><h2 id="基础-2"><a href="#基础-2" class="headerlink" title="基础"></a>基础</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassName</span> <span class="keyword">extends</span> <span class="title">SuperClass</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">body</span></span>;</span><br><span class="line">&#125;   <span class="comment">// 如果父类是 Object ，则 extends 可以省略</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>Java 不支持多重继承</strong> ，都是公有继承</p>
+</li>
+<li><p>子类继承父类<strong>可访问</strong>的数据和方法，不继承构造函数</p>
+</li>
+<li><p>子类和父类是 ISA 关系：一个子类 is a 父类对象 ，但是 C++ 中私有继承和保护继承中父类和子类的关系是基类和派生类</p>
+</li>
+<li><p>任何类在设计时应考虑覆盖祖先类Object的如下函数：equals，clone，toString等</p>
+<ul>
+<li>toString方法应该返回一个描述当前对象的有意义的字符串</li>
+</ul>
+</li>
+</ul>
+<h2 id="初始化模块"><a href="#初始化模块" class="headerlink" title="初始化模块"></a>初始化模块</h2><ul>
+<li>初始化块是Java类中可以出现的第四种成员（前三种包括属性、方法、构造函数），分为实例初始化块和静态初始化块</li>
+<li>实例初始化模块（instance initialization block，IIB）是一个用大括号括住的语句块，直接嵌套于类体中，不在方法内</li>
+<li>它的作用就像把它放在了类中每个构造方法的最开始位置。用于初始化对象。实例初始化块先于构造函数执行</li>
+<li>一个类可以有多个初始化模块，模块按照在类中出现的顺序执行</li>
+<li>可用于截获异常</li>
+<li>实例初始化模块最重要的作用是当我们需要写一个内部匿名类时：匿名类不可能有构造函数，这时可以用实例初始化块来初始化数据成员</li>
+<li><strong>定义并初始化类的实例变量等价于实例初始化块：private int id = 0</strong></li>
+</ul>
+<ul>
+<li><p>静态初始化模块是由static修饰的初始化模块{}，只能访问类的静态成员，并且在 JVM 的 Class Loader 将类装入内存时调用。（<strong>类的装入和类的实例化是两个不同步骤，首先是将类装入内存，然后再实例化类的对象</strong>）</p>
+</li>
+<li><p>在类体里直接定义静态变量相当于静态初始化块</p>
+</li>
+<li><p>初始化模块顺序</p>
+<ul>
+<li>第一次使用类时装入类</li>
+<li>如果父类没装入则首先装入父类，这是个递归的过程，直到继承链上所有祖先类全部装入</li>
+<li>装入一个类时，类的静态数据成员和静态初始化模块按它们在类中出现的顺序执行</li>
+<li>实例化类的对象</li>
+<li>首先构造父类对象，这是个递归过程，直到继承链上所有祖先类的对象构造好</li>
+<li>构造一个类的对象时，按在类中出现的顺序执行实例数据成员的初始化及实例初始化模块</li>
+<li>执行构造函数函数体</li>
+</ul>
+</li>
+<li><p>以下例子非常好理解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InitDemo</span></span>&#123;</span><br><span class="line">    InitDemo()&#123;</span><br><span class="line">        <span class="keyword">new</span> M();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">	  System.out.println(<span class="string">"(1) "</span>);</span><br><span class="line">	  <span class="keyword">new</span> InitDemo();</span><br><span class="line">    &#125;</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"(2) "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"(0) "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">N</span></span>&#123;</span><br><span class="line">    N()&#123; 	System.out.println(<span class="string">"(6) "</span>); &#125;</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"(5) "</span>); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"(3) "</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">M</span> <span class="keyword">extends</span> <span class="title">N</span></span>&#123;</span><br><span class="line">    M()&#123; 	System.out.println(<span class="string">"(8) "</span>); &#125;</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"(7) "</span>); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"(4) "</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="super-关键字"><a href="#super-关键字" class="headerlink" title="super 关键字"></a>super 关键字</h2><ul>
+<li>利用super可以显式调用父类的构造函数： <code>super(parameters)</code></li>
+<li>必须是子类构造函数的第1条且仅1条语句(先构造父类)</li>
+<li>如果子类构造函数中没有显式地调用父类的构造函数，那么将自动调用父类不带参数的构造函数，因为编译器会偷偷地在子类构造函数第一条语句前加上super()</li>
+<li>调用父类成员（此时相当于 this 引用）<ul>
+<li>super.data（如果父类属性在子类可访问）</li>
+<li>super.method(parameters)（如果父类方法在子类可访问）</li>
+<li>不能使用super.super.p()这样的super链</li>
+</ul>
+</li>
+</ul>
+<hr>
 
       
 
@@ -854,15 +985,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -871,6 +998,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
