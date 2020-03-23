@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="KJay的博客">
 <meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程   概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-21T14:22:27.791Z">
+<meta property="og:updated_time" content="2020-03-23T02:48:12.486Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
@@ -572,7 +572,51 @@
 <li><strong>不能在嵌套的块里声明同名的变量，不像 <code>C++</code> 那样可以屏蔽影响</strong></li>
 </ul>
 <hr>
-<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2><hr>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+<li><code>double[] mylist = new double[10]</code></li>
+<li>任何实例化的数组都是 Object 的子类，<strong>声明数组引用变量并不分配内存</strong></li>
+<li>数组类型变量是引用相同类型变量集合的<strong>引用</strong>变量</li>
+<li>凡使用 new 后，内存单元都初始化为 0( 值 ) 或 null ( 引用 )</li>
+<li>数组元素本身可以是引用变量——多维数组</li>
+<li>长度： <code>mylist.length</code></li>
+</ul>
+<h2 id="数组的复制"><a href="#数组的复制" class="headerlink" title="数组的复制"></a>数组的复制</h2><ul>
+<li>两个数组已实例化： <code>System.arraycopy(sorceArray,0,targetArray,0,sorceArray.length)</code> </li>
+<li>targetArray 可以没有实例化: <code>sourceArray.clone()</code></li>
+</ul>
+<h2 id="数组作为方法传参"><a href="#数组作为方法传参" class="headerlink" title="数组作为方法传参"></a>数组作为方法传参</h2><ul>
+<li>pass by reference</li>
+<li>String,Interger这样的对象内容是<strong>不可更改</strong>的，数组传参时实际创建了一个新对象<ul>
+<li>因为Integer是int的包装类，它必须要和int的特性一致：int作为方法参数调用时，方法内部对参数的改变不会影响实参。所以Integer必须这么设计</li>
+</ul>
+</li>
+</ul>
+<h2 id="可变参数列表"><a href="#可变参数列表" class="headerlink" title="可变参数列表"></a>可变参数列表</h2><ul>
+<li><code>typeName...parameterName</code></li>
+<li>只能给方法指定一个可变长参数，<strong>必须是最后一个参数</strong></li>
+<li>Java 将可变长参数当成数组对待，可以通过 length 得到可变参数的个数</li>
+</ul>
+<h2 id="Arrays-类"><a href="#Arrays-类" class="headerlink" title="Arrays 类"></a>Arrays 类</h2><ul>
+<li><code>java.util.Arrays.sort(numbers)</code> </li>
+<li><code>int index = java.util.Arrays.binarySearch(list,11)</code></li>
+</ul>
+<h2 id="命令行参数"><a href="#命令行参数" class="headerlink" title="命令行参数"></a>命令行参数</h2><ul>
+<li>可以从命令行向java程序传递参数。参数以空格分隔，如果参数本身包含空格，用双引号括起来<ul>
+<li><code>java TestMain &quot;Fisrt number&quot; alpha 53</code></li>
+</ul>
+</li>
+<li>注意Java的命令行参数不包括类名， args.length==3</li>
+<li>在定义重载函数时，编译器认为 <code>String[] args</code> 和 <code>String … args</code> 类型相同<ul>
+<li><code>public static void main(String … args)  //也可以作为启动函数</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h2><ul>
+<li>二维数组每一行的列数可以不同，与 C++ 不同<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> [][]x = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>][];</span><br><span class="line">x[<span class="number">0</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line">x[<span class="number">4</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//C++ 允许缺省第一个参数，而 Java 不一样</span></span><br><span class="line"><span class="comment">//Java 允许出现不规则数组</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><hr>
 
       
 
@@ -810,19 +854,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -839,6 +879,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
               </li>
             
             <div class="clearfix"></div>
