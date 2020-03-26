@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="KJay的博客">
 <meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程   概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-23T14:02:04.774Z">
+<meta property="og:updated_time" content="2020-03-26T13:31:51.915Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
@@ -677,7 +677,7 @@
 </li>
 <li><p><strong>Java 继承时无继承控制(见继承，即都是公有继承，和C++不同)，故父类成员继承到派生类时访问权限保持不变</strong></p>
 </li>
-<li><p>类类体中可以访问从父类继承来的protected成员 。<strong>但如果子类和父类不在同一个包里</strong>，<strong>子类里不能访问另外父类实例（非继承）的protected成员</strong></p>
+<li><p>子类体中可以访问从父类继承来的protected成员 。<strong>但如果子类和父类不在同一个包里</strong>，<strong>子类里不能访问另外父类实例（非继承）的protected成员</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> h = o.u;    <span class="comment">//error</span></span><br><span class="line"><span class="keyword">int</span> i = u + <span class="keyword">super</span>.u;    <span class="comment">//OK</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>访问控制针对的是类型而不是变量</p>
@@ -737,16 +737,131 @@
 </li>
 </ul>
 <h2 id="super-关键字"><a href="#super-关键字" class="headerlink" title="super 关键字"></a>super 关键字</h2><ul>
-<li>利用super可以显式调用父类的构造函数： <code>super(parameters)</code></li>
-<li>必须是子类构造函数的第1条且仅1条语句(先构造父类)</li>
-<li>如果子类构造函数中没有显式地调用父类的构造函数，那么将自动调用父类不带参数的构造函数，因为编译器会偷偷地在子类构造函数第一条语句前加上super()</li>
-<li>调用父类成员（此时相当于 this 引用）<ul>
+<li><p>利用super可以显式调用父类的构造函数： <code>super(parameters)</code></p>
+</li>
+<li><p>必须是子类构造函数的第1条且仅1条语句(先构造父类)</p>
+</li>
+<li><p>如果子类构造函数中没有显式地调用父类的构造函数，那么将自动调用父类不带参数的构造函数，因为编译器会偷偷地在子类构造函数第一条语句前加上super()</p>
+</li>
+<li><p>调用父类成员（此时相当于 this 引用）</p>
+<ul>
 <li>super.data（如果父类属性在子类可访问）</li>
 <li>super.method(parameters)（如果父类方法在子类可访问）</li>
 <li>不能使用super.super.p()这样的super链</li>
 </ul>
 </li>
 </ul>
+<h2 id="实例方法覆盖"><a href="#实例方法覆盖" class="headerlink" title="实例方法覆盖"></a>实例方法覆盖</h2><ul>
+<li><p>如果子类重新定义了从父类中继承的<strong>实例方法</strong>，称为方法覆盖(method override)</p>
+<ul>
+<li><p>在子类类体函数中可以使用super调用被覆盖的父类方法</p>
+</li>
+<li><p>仅当父类方法在子类里是可访问的，该实例方法才能被子类覆盖，即父类私有实例方法不能被子类覆盖，<strong>父类实例私有方法自动视为 final 的</strong></p>
+</li>
+<li><p>静态方法不能被覆盖，如果静态方法在子类中重新定义，那么父类方法将被隐藏</p>
+</li>
+<li><p>一旦父类中的实例方法被子类覆盖，同时用父类型的引用变量引用了子类对象，这时不能通过这个父类型引用变量去访问被覆盖的父类方法(即这时被覆盖的父类方法不可再被发现)。因为实例方法具有多态性（晚期绑定）</p>
+</li>
+<li><p>指父类的变量（实例变量、静态变量）和静态方法在子类被重新定义，但由于类的变量和静态方法没有多态性，因此通过父类型引用变量访问的一定是父类变量、静态方法(即被隐藏的可再发现)</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">m</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"A's m"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">s</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"A's s"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="comment">//覆盖父类实例方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">m</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"B's m"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//隐藏父类静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">s</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"B's s"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OverrideDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        A o = <span class="keyword">new</span> B();  <span class="comment">//父类型变量引用子类对象</span></span><br><span class="line">        o.m();  <span class="comment">//由于父类实例方法m被子类覆盖，o运行时指向B类对象，由于多态性，执行的是B的m</span></span><br><span class="line">        o.s();    <span class="comment">//由于s是静态方法，没有多态性，编译器编译时对象o的声明类型是A，所以执行的是A的s</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//引用变量o有二个类型：声明类型A，实际运行时类型B</span></span><br><span class="line"><span class="comment">//判断o.s()执行的是哪个函数按照o的声明类型，因为静态函数s没有多态性，</span></span><br><span class="line"><span class="comment">//函数入口地址在编译时就确定（早期绑定），而编译时所有变量的类型都按声明类型。</span></span><br><span class="line"><span class="comment">//判断o.m()执行的是哪个函数按照o的实际运行类型，在运行时按照o指向的实际类型B来重新计算函数入口地址（晚期绑定。多态性），因此调用的是B的m</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 因此一旦引用变量o指向了B类型对象（A o = new B()），</span></span><br><span class="line"><span class="comment">// o.m()调用的永远是B的m，再也无法通过o调用A的m，哪怕</span></span><br><span class="line"><span class="comment">// 强制转换都不行： ((A)o).m();调用的还是B的m</span></span><br><span class="line"><span class="comment">// 这就是前面PPT所说的不能再发现。</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Object-中的方法"><a href="#Object-中的方法" class="headerlink" title="Object 中的方法"></a>Object 中的方法</h2><ul>
+<li><p>java.lang.Object 类是所有类的祖先类</p>
+<ul>
+<li><p>提供 <code>toString</code>,<code>equals</code>,<code>getClass</code>,<code>clone</code>,<code>finalize</code> ， 前 3 个为公有，后 2 个为保护。 getClass 为 final （用于泛型和反射机制，禁止覆盖）</p>
+</li>
+<li><p>equals 方法:用于测试两个对象是否相等。Object类的默认实现是比较两个对象引用是否引用同一个对象，<strong>而我们一般应该判断内容是否相等</strong></p>
+</li>
+<li><p>toString 方法：返回代表这个对象的字符串，Object类的默认实现是返回由类名、@和hashCode组成。<strong>而我们应该覆盖此方法提供更有意义的信息</strong></p>
+</li>
+</ul>
+</li>
+<li><p>equals 方法</p>
+<ul>
+<li><p>对基本数据类型， == 即可</p>
+</li>
+<li><p>对引用型变量数据类型，调用他们的 equals 判断，不能用 ==</p>
+</li>
+<li><p>覆盖最好同时覆盖 hashCode() 方法，该方法返回对象内容的 hashcode 值，在比较时，首先通过 hashCode 比对，比对成功后再通过 equals 比对</p>
+</li>
+<li><p>覆盖 equals 函数，首先用 instanceof 运算符检查参数类型是否和当前对象的类型一致</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;     <span class="comment">//参数类型为 Object</span></span><br><span class="line">    <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Circle) &#123;</span><br><span class="line">        <span class="keyword">return</span> radius == ((Circle)obj).radius;  <span class="comment">//一定要强制类型转换，否则无radius属性</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>clone 方法</p>
+<ul>
+<li><p>类似 C++ 的复制构造函数</p>
+</li>
+<li><p><strong>返回值是 Object</strong>，一般是创建一个同类型的对象做深拷贝后返回</p>
+</li>
+<li><p>要实现一个类的clone方法，首先这个类需要实现Cloneable接口，否则会抛出CloneNotSupportedException异常</p>
+</li>
+<li><p>Cloneable接口其实就是一个标记接口，里面没有定义任何接口方法，只是用来标记一个类是否支持克隆：没有实现该接口的类不能克隆</p>
+</li>
+<li><p>还要<strong>公有覆盖</strong>clone方法，即Object类里clone方法是保护的，子类覆盖这个方法时应该提升为 <strong>public</strong></p>
+</li>
+<li><p>实现应为<strong>深拷贝</strong>，对于引用数据类型进一步调用该成员的克隆方法</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hust.cs.javacourse.ch9;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">implements</span> <span class="title">Cloneable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SIZE = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] values = <span class="keyword">new</span> <span class="keyword">int</span>[SIZE];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] getValues() &#123;</span><br><span class="line">        <span class="keyword">return</span> values;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValues</span><span class="params">(<span class="keyword">int</span>[] newValues)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.values = newValues;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> A) &#123;</span><br><span class="line">            <span class="keyword">return</span> java.util.Arrays.equals(<span class="keyword">this</span>.getValues(),((A)obj).getValues());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        <span class="comment">//return super.clone()                      //浅拷贝</span></span><br><span class="line">        A newObj = <span class="keyword">new</span> A();</span><br><span class="line">        newObj.values = <span class="keyword">this</span>.values.clone();        <span class="comment">//已经实现好的 clone</span></span><br><span class="line">        <span class="keyword">return</span> newObj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        StringBuffer buf = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> v : values) &#123;</span><br><span class="line">            buf.append(v+<span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> buf.toString().trim();       <span class="comment">//比较实用的写法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">implements</span> <span class="title">Cloneable</span> </span>&#123;</span><br><span class="line">    A a;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        B newObj = <span class="keyword">new</span> B();</span><br><span class="line">        newObj.i = <span class="keyword">this</span>.i;</span><br><span class="line">        newObj.a = (A)<span class="keyword">this</span>.a.clone();</span><br><span class="line">        <span class="keyword">return</span> newObj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CloneTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        A o1 = <span class="keyword">new</span> A();</span><br><span class="line">        o1.setValues(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>&#125;);</span><br><span class="line">        A o2 = (A) o1.clone();</span><br><span class="line">        System.out.println(o2 == o1);</span><br><span class="line">        System.out.println(o1.getValues() == o2.getValues());</span><br><span class="line">        System.out.println(o1.equals(o2));</span><br><span class="line">        System.out.println(o1.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><ul>
+<li><p>子类需要<strong>覆盖父类的实例方法</strong></p>
+</li>
+<li><p>顺着继承链查找方法的实现，看C1是否覆盖p，如果已覆盖，调用C1的p;如果C1没有覆盖p，则查看C2是否覆盖，以此类推从C1开始顺着继承链往父类查找，直到找到第一个p的实现，并调用这个p的实现</p>
+</li>
+<li><p>通用编程：方法参数和变量的声明越抽象越好，越抽象越通用</p>
+</li>
+<li><p>父类型转换子类型必须进行强制类型转换，但是最好进行安全检查</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Person p = <span class="keyword">new</span> Person();</span><br><span class="line">Manager m = (Manager)p;     <span class="comment">//不安全</span></span><br><span class="line"><span class="keyword">if</span> (p <span class="keyword">instanceof</span> Manager) &#123;     <span class="comment">// p 可以指向任何 Person 类的子类型，做安全检查</span></span><br><span class="line">    m = (Manager)p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>instanceof</code> 是操作符，判断一个引用指向的对象是否是一个类的实例</p>
+</li>
+<li><p>重载发生在编译时，多态发生在运行时</p>
+</li>
+<li><p>对象访问运算符 <code>.</code> 优先于类型转换运算符</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">((Circle)object).getArea();     <span class="comment">//OK</span></span><br><span class="line">(Circle)object.getArea();     <span class="comment">//Error</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><ul>
+<li><p><code>final</code> 修饰变量，常量值不能被修改</p>
+</li>
+<li><p><code>final</code> 修饰方法，最终方法，实例方法不能被子类覆盖，静态方法不能被子类隐藏<br>  <code>Object</code> 的 <code>getClass()</code></p>
+</li>
+<li><p><code>final</code> 修饰类，最终类，不能派生子类</p>
+<ul>
+<li><code>String</code>,<code>StringBuffer</code></li>
+<li><code>Math</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="异常处理和文本-IO"><a href="#异常处理和文本-IO" class="headerlink" title="异常处理和文本 IO"></a>异常处理和文本 IO</h1><h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><ul>
+<li><p>异常(Exception)：又称为例外，是程序在<strong>运行过程</strong>中发生的非正常事件，其发生会影响程序的正常执行</p>
+</li>
+<li><p>当一个方法中发生错误时，将创建一个对象并将它交给运行时系统，此对象被称为异常对象 (exception object)；创建异常对象并将它交给运行时系统被称为抛出一个异常(throw an exception)</p>
+</li>
+<li><p>产生原因</p>
+<ul>
+<li>JVM 同步检测一个异常的执行条件，间接抛出异常</li>
+<li>显式地执行 throw 语句抛出异常</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">   <span class="comment">//由于main方法里抛出的异常没有被处理,因此在main方法必须加上异常声明throws Exception, 此时是必检异常</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">       <span class="keyword">int</span> i = <span class="keyword">new</span> Scanner(System.in).nextInt();</span><br><span class="line">       <span class="keyword">if</span>(i &gt; <span class="number">10</span>)&#123; <span class="comment">//假设应用逻辑要求用户输入整数不能大于10</span></span><br><span class="line">		 <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"Input value is too big"</span>); <span class="comment">//显式地用throw抛出异常</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <hr>
 
       
@@ -989,19 +1104,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1013,7 +1120,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
             
             <div class="clearfix"></div>
