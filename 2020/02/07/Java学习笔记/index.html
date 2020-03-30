@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="KJay的博客">
 <meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程   概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-26T13:31:51.915Z">
+<meta property="og:updated_time" content="2020-03-30T06:06:59.107Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
@@ -838,7 +838,10 @@
 <h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><ul>
 <li><p><code>final</code> 修饰变量，常量值不能被修改</p>
 </li>
-<li><p><code>final</code> 修饰方法，最终方法，实例方法不能被子类覆盖，静态方法不能被子类隐藏<br>  <code>Object</code> 的 <code>getClass()</code></p>
+<li><p><code>final</code> 修饰方法，最终方法，实例方法不能被子类覆盖，静态方法不能被子类隐藏</p>
+<ul>
+<li><code>Object</code> 的 <code>getClass()</code></li>
+</ul>
 </li>
 <li><p><code>final</code> 修饰类，最终类，不能派生子类</p>
 <ul>
@@ -862,7 +865,198 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">   <span class="comment">//由于main方法里抛出的异常没有被处理,因此在main方法必须加上异常声明throws Exception, 此时是必检异常</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">       <span class="keyword">int</span> i = <span class="keyword">new</span> Scanner(System.in).nextInt();</span><br><span class="line">       <span class="keyword">if</span>(i &gt; <span class="number">10</span>)&#123; <span class="comment">//假设应用逻辑要求用户输入整数不能大于10</span></span><br><span class="line">		 <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"Input value is too big"</span>); <span class="comment">//显式地用throw抛出异常</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li><p>Java 异常都必须继承 <code>Throwable</code> 的直接或间接子类</p>
+</li>
+<li><p>Java 的异常分为两大类：从 <code>Exception</code> 派生的是程序级错误，可由程序级处理；从 <code>Error</code> 派生是系统级错误，程序可不用处理，也基本处理不了（例如 JVM 内存不够）</p>
+</li>
+<li><p>Exception的子类里，除了 RuntimeException 这个分支外，其他的都是必检异常（即：要么在函数里用 catch 子句捕获并处理，要么在所在函数加上<strong>异常声明</strong>，RuntimeException 的子类是非必检异常）</p>
+</li>
+<li><p>异常处理过程</p>
+<ul>
+<li><p>按照与方法调用次序相反的次序搜索调用堆栈，寻找一个包含可处理异常的代码块的方法，这个代码块称为异常处理器(exception handler)，即try/catch语句</p>
+</li>
+<li><p>如果被抛出的异常对象与try/catch块可以处理的类型匹配，运行时系统将异常对象传递给它，这称为捕获异常(catch the exception)</p>
+</li>
+<li><p>如果运行时系统彻底搜索了调用堆栈中的所有方法，但没有找到合适的异常处理器，程序则终止</p>
+</li>
+<li><p>在方法内部，按照 try/catch 语句的嵌套顺序由内向外查找匹配</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="捕获异常"><a href="#捕获异常" class="headerlink" title="捕获异常"></a>捕获异常</h2><ul>
+<li><p>语法</p>
+<ul>
+<li><p>一个try块后面可以有多个catch块。每个catch块可以处理的异常类型由异常类型参数指定。异常参数类型必须是从Throwable派生的类</p>
+</li>
+<li><p>当try块中的语句抛出异常对象时，运行时系统将调用第一个异常对象类型与参数类型匹配的catch子句。如果被抛出的异常对象可以被合法地赋值给catch子句的参数，那么系统就认为它是匹配的（和方法调用传参一样，子类异常对象匹配父类型异常参数类型）</p>
+</li>
+<li><p>无论 <code>try</code> 块中是否发生异常，都会执行 <code>finally</code> 块中的代码。通常用于关闭文件或释放其它系统资源</p>
+</li>
+<li><p>处理异常时，也可以抛出新异常，或者处理完异常后继续向上（本方法调用者）抛出异常以让上层调用者知道发生什么事情：链式异常</p>
+</li>
+<li><p>当包含catch子句时，finally子句是可选的；当包含finally子句时，catch子句是可选的</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    statements</span><br><span class="line">&#125; <span class="keyword">catch</span> (ExcetionType1 id1) &#123;</span><br><span class="line">    statements1</span><br><span class="line">&#125; <span class="keyword">catch</span> (ExcetionType2 id2) &#123;</span><br><span class="line">    statements2</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>示例<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">read</span><span class="params">(String filePath)</span></span>&#123;</span><br><span class="line">    String s = <span class="keyword">null</span>;	</span><br><span class="line">    BufferedReader reader = <span class="keyword">null</span>; <span class="comment">//BufferedReader一次读文本文件一行</span></span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        StringBuffer buf = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> </span><br><span class="line">					File(filePath))));	</span><br><span class="line">        <span class="keyword">while</span>( (s = reader.readLine()) != <span class="keyword">null</span>)&#123;<span class="comment">//readLine方法读取到文件末尾返回null	</span></span><br><span class="line">            buf.append(s).append(<span class="string">"\n"</span>); </span><br><span class="line">        &#125;</span><br><span class="line">	 s = buf.toString().trim();</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">catch</span> (FileNotFoundException e) &#123; e.printStackTrace();&#125;     <span class="comment">//new FileInputStream </span></span><br><span class="line">    <span class="keyword">catch</span> (IOException e) &#123; e.printStackTrace()&#125;        <span class="comment">//readLine()</span></span><br><span class="line">    <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(reader != <span class="keyword">null</span>) &#123;</span><br><span class="line">	    <span class="keyword">try</span> &#123; reader.close()&#125; </span><br><span class="line">	    <span class="keyword">catch</span> (IOException e) &#123; e.printStackTrace();&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="异常的捕获顺序"><a href="#异常的捕获顺序" class="headerlink" title="异常的捕获顺序"></a>异常的捕获顺序</h2><ul>
+<li><p>通常将继承链最底层的异常类型作为第1个catch子句参数，次底层异常类型作为第2个catch子句参数，以此类推。越在前面的catch子句其异常参数类型应该越具体。以便所有catch都有机会捕捉相应异常</p>
+</li>
+<li><p><code>throw</code> 之后的语句不会执行</p>
+</li>
+<li><p>无论同层catch子句是否捕获、处理本层的异常（即使在 <code>catch</code> 块里抛出或转发异常），同层的<code>finally</code> 总是都会执行</p>
+</li>
+<li><p>一个catch捕获到异常后，同层其他catch都不会执行，然后执行同层finally</p>
+</li>
+<li><p>示例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.System;</span><br><span class="line"><span class="keyword">import</span> java.lang.ArithmeticException;</span><br><span class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span>  <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">div</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;  <span class="comment">//各种Exception都被捕获，函数无须声明异常</span></span><br><span class="line">        <span class="keyword">int</span>   r=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;  </span><br><span class="line">		<span class="comment">//自己抛出异常对象 </span></span><br><span class="line">		<span class="keyword">if</span>(y==<span class="number">0</span>) <span class="keyword">throw</span>  <span class="keyword">new</span> ArithmeticException( );      </span><br><span class="line">		r=x/y; &#125;</span><br><span class="line">        <span class="keyword">catch</span>(ArithmeticException  ae) &#123;   System.out.print(ae.toString( )); <span class="keyword">throw</span> ae;  &#125; </span><br><span class="line">        <span class="keyword">catch</span>(Exception  ae)&#123;<span class="comment">//捕获各种Exception：若是第1个catch，则后续的catch子句无机会捕获   </span></span><br><span class="line">		System.out.print(ae.toString( ));   </span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">finally</span>&#123;  r=-<span class="number">1</span>; &#125;        <span class="comment">//无论是否有异常，r=-1</span></span><br><span class="line">        <span class="keyword">return</span>  r;               </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span>  <span class="title">main</span><span class="params">(String[ ] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;   div(<span class="number">5</span>, <span class="number">0</span>);   &#125; <span class="comment">//调用div(5, 0)后，div函数的执行轨迹已用红色标出</span></span><br><span class="line">        <span class="keyword">catch</span>(Throwable  ae) &#123; <span class="comment">//任何异常都被捕获，包括Error类型异常</span></span><br><span class="line">		System.out.print(ae.toString( ));   </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="自定义异常类"><a href="#自定义异常类" class="headerlink" title="自定义异常类"></a>自定义异常类</h2><ul>
+<li><p>通常继承 Exception 子类</p>
+</li>
+<li><p>如若增加了成员变量，通常需要覆盖 <code>toString()</code> 方法，但是通常不需要定义 <code>clone()</code> 方法</p>
+</li>
+</ul>
+<h2 id="文本-I-O"><a href="#文本-I-O" class="headerlink" title="文本 I/O"></a>文本 I/O</h2><ul>
+<li><p>类 File: 对文件和目录的抽象，包括：路径管理，文件读写状态、修改日期获取等</p>
+</li>
+<li><p>类 Scanner: 从File或InputStream的读入。可按串、字节、整数、双精度、或整行等不同要求读入</p>
+</li>
+<li><p>类 PrintWriter: 输出到File或OutputStream： 可按串、字节、整数、双精度、或整行等不同要求输出</p>
+</li>
+<li><p>示例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span>  filecopy;</span><br><span class="line"><span class="keyword">import</span> java.lang.System;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Copy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[ ] args)</span> </span>&#123;  <span class="comment">//参数不含程序名</span></span><br><span class="line">        <span class="keyword">if</span>(args.length!=<span class="number">2</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">"Usage: Java  Copy  &lt;sourceFile&gt;   &lt;tagetFile&gt;"</span>);</span><br><span class="line">            System.exit(<span class="number">1</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        File sF=<span class="keyword">new</span> File(args[<span class="number">0</span>]);                     <span class="comment">//args[0]:源文件路径</span></span><br><span class="line">        <span class="keyword">if</span>(!sF.exists( ))&#123;</span><br><span class="line">            System.out.println(<span class="string">"Source Fiel "</span>+args[<span class="number">0</span>]+ <span class="string">"does not exist!"</span>);</span><br><span class="line">            System.exit(<span class="number">2</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        File tF=<span class="keyword">new</span> File(args[<span class="number">1</span>]);      <span class="comment">//args[1]:目标文件</span></span><br><span class="line">        <span class="keyword">if</span>(tF.exists( ))&#123;</span><br><span class="line">            System.out.println(<span class="string">"Target File "</span>+args[<span class="number">0</span>]+ <span class="string">"already exist"</span>);</span><br><span class="line">            System.exit(<span class="number">3</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            Scanner input=<span class="keyword">new</span> Scanner(sF);</span><br><span class="line">            PrintWriter output=<span class="keyword">new</span> PrintWriter(tF);</span><br><span class="line">            <span class="keyword">while</span>(input.hasNext( ))&#123;</span><br><span class="line">                String s=input.nextLine(); <span class="comment">//读取下一行</span></span><br><span class="line">                output.println(s);		<span class="comment">//打印这一行</span></span><br><span class="line">            &#125;</span><br><span class="line">            input.close( );       </span><br><span class="line">            output.close( );</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span>(IOException ioe)&#123;       </span><br><span class="line">		System.out.println(ioe.toString());      </span><br><span class="line">	 &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
 <hr>
+<h1 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h1><h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><ul>
+<li><p>抽象类和抽象方法都<strong>必须</strong>需要加上 <code>abstract()</code> 方法</p>
+</li>
+<li><p>没有包含抽象方法的类也可以定义成抽象类</p>
+</li>
+<li><p>抽象方法还包括接口中定义的方法，只要类 C 有一个未实现的方法，就是抽象类</p>
+</li>
+<li><p>接口中的方法会自动加上 <code>public abstract</code></p>
+</li>
+<li><p>只有实例方法可以声明为抽象方法（Java里所有实例方法自动是虚函数，因此Java里没有virtual关键字）</p>
+</li>
+<li><p>抽象类不能被实例化，即不能用new关键字创建对象（即new 右边的类型不能是抽象类）</p>
+</li>
+<li><p>但是抽象类可以作为变量声明类型、方法参数类型、方法返回类型，因为一个抽象类型引用变量可以指向具体子类的对象</p>
+</li>
+<li><p>抽象类的父类可以是具体类：自己引入了抽象方法。例如，具体类Object是所有类的祖先父类</p>
+</li>
+<li><p>抽象类可以定义构造函数，并可以被子类调用</p>
+</li>
+</ul>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><ul>
+<li><p><strong>引用类型</strong></p>
+</li>
+<li><p>接口不是类，无构造函数</p>
+</li>
+<li><p>接口可以多继承，类可 <code>implements</code> 多个接口</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[modifier] <span class="class"><span class="keyword">interface</span> <span class="title">interfaceName</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">1</span>;  <span class="comment">//public static final</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">m</span><span class="params">()</span></span>;       <span class="comment">//public abstract</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>类和接口是实现关系 (CANDO)，例如Airplane实现接口Flayer，意味着Airplane的实例CANDO Flyer</p>
+</li>
+<li><p>接口中的方法通过“接口类型的引用变量.方法名”调用，但接口类型的引用变量必须指向实现了该接口的类的实例对象</p>
+</li>
+<li><p>接口中的常量名通过“接口名.常量名”访问</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Flyer f = <span class="keyword">new</span> AirPlane();</span><br><span class="line"></span><br><span class="line">f.takeOff( ); <span class="comment">//f传给this</span></span><br><span class="line">f.fly( );</span><br><span class="line">f.land( );    <span class="comment">//f传给this </span></span><br><span class="line"></span><br><span class="line">Flyer.k;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>当一个类实现多个接口时，这个类的实例可以是多种类型</p>
+</li>
+<li><p>JDK 的 Comparable 接口</p>
+<ul>
+<li><p>CompareTo判断this对象相对于给定对象o的顺序，当this对象小于、等于或大于给定对象o时，分别返回负数、0或正数</p>
+</li>
+<li><p>findMax方法的参数类型和返回类型都是Comparable（只要是实现了Comparable接口的对象都可以传进来。 Comparable接口描述了可以比较大小的能力，一个类实现了这个接口，意味着这个类的对象直接可以比较大小）</p>
+</li>
+<li><p>Max.findMax与Comparable接口的具体实现子类无关。只要是实现了Comparable接口的具体类的二个对象（注意是同一个具体类的二个对象）传进来， Max.findMax都能工作。这就是接口的好处。（程序存在的问题：如果是2个实现了Comparable接口的不同具体类对象传进来怎么办？最好通过泛型解决）</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.lang;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Comparable</span></span>&#123;</span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Object o)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Max</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Comparable <span class="title">findMax</span> <span class="params">(Comparable o1, Comparable o2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(o1.CompareTo(o2) &gt; <span class="number">0</span> )</span><br><span class="line">            <span class="keyword">return</span> o1;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> o2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Cloneable 接口</p>
+<ul>
+<li><p>Java定义了Cloneable接口，任何想克隆的类必须实现该接口，同时覆盖从Object类继承的clone方法，并将访问属性改为public</p>
+</li>
+<li><p>Cloneable接口为空接口(未定义任何函数)，又称标记接口，唯一目的允许你用instanceof检查对象的类型 </p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.lang</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Cloneable</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h2><ul>
+<li><p>为基本数据类型提供有用的方法和常量值</p>
+</li>
+<li><p>用于只能处理对象引用的地方（比如Java所有的集合类里只能放对象）</p>
+</li>
+<li><p>包装类对象的值不变（内部valule是final的），只能读取</p>
+</li>
+<li><p>均实现 comparable 接口</p>
+</li>
+<li><p>构造函数</p>
+<ul>
+<li>以一个对应的基本数据类型为参数</li>
+<li>以字符串为参数（除 Character ）</li>
+</ul>
+</li>
+<li><p>每一个数值包装类都有相应类型 <strong>静态常量</strong> <code>MAX_VALUE</code> 和 <code>MIN_VALUE</code></p>
+<ul>
+<li><code>MAX_VALUE</code> 对应本数据类型的最大值</li>
+<li>对 <code>Byte</code> ,<code>Short</code> ,<code>Integer</code> 和 <code>Long</code>， <code>MIN_VALUE</code>对应最小值</li>
+<li>对 <code>Float</code> 和 <code>Double</code> ， <code>MIN_VALUE</code> 对应最小正值</li>
+</ul>
+</li>
+<li><p><code>int i = new Integer(10).intValue();</code></p>
+</li>
+<li><p>每个类的toString（）方法将数值转换成字符串</p>
+</li>
+<li><p>字符串转数值</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = Integer.parseInt(“<span class="number">11</span>”,<span class="number">2</span>); <span class="comment">//3</span></span><br><span class="line"><span class="keyword">int</span> i = Integer.parseInt(“<span class="number">12</span>”,<span class="number">8</span>); <span class="comment">//10</span></span><br><span class="line"><span class="keyword">int</span> i = Integer.parseInt(“<span class="number">1</span>A”,<span class="number">16</span>); <span class="comment">//26</span></span><br><span class="line">   <span class="keyword">double</span> d = Double.parseDouble(“<span class="number">3.14</span>”);<span class="comment">//3.14</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>valueOf</code> 创建一个新的包装对象，并将它初始化为指定字符串的值</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Double doubleObject = Douoble.valueOf(<span class="string">"32.3"</span>);</span><br><span class="line">Interger intergerObject = Interger.valueOf(<span class="string">"3"</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>从 JDK1.5 开始允许基本数据类型和包装类自动转换<ul>
+<li>从基本数据类型到包装类对象，称为装箱</li>
+<li>从包装类对象到基本数据类型，称为开箱</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Interger intObject = <span class="number">2</span>;     <span class="comment">//装箱，也可写成 Interger intObject = new Interger(2);</span></span><br><span class="line"></span><br><span class="line">Integer intObject1 = <span class="number">2</span>, intObject2 = <span class="number">3</span> ;</span><br><span class="line">System.out.println(intObject1 + intObject2 );<span class="comment">//开箱</span></span><br><span class="line"><span class="keyword">int</span> j = intObject ; <span class="comment">//开箱</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="范型"><a href="#范型" class="headerlink" title="范型"></a>范型</h1><hr>
 
       
 
@@ -1100,15 +1294,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1120,15 +1310,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
             
             <div class="clearfix"></div>
