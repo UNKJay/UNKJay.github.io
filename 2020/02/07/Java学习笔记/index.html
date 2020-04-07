@@ -16,11 +16,11 @@
 <meta property="og:site_name" content="KJay的博客">
 <meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程   概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assets&#x2F;blogImg&#x2F;java1.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assets&#x2F;blogImg&#x2F;java2.png">
-<meta property="og:updated_time" content="2020-04-07T14:50:58.256Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;java1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;java2.png">
+<meta property="og:updated_time" content="2020-04-07T16:20:57.624Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assets&#x2F;blogImg&#x2F;java1.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;assests&#x2F;blogImg&#x2F;java1.png">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
   
@@ -1147,9 +1147,9 @@
 </li>
 <li><p><strong>范型容器讨论的是自身的类型，不是容器持有对象的类型</strong></p>
 </li>
-<li><p>通常作为方法参数<br><img src="/assets/blogImg/java1.png" alt="Java1"></p>
+<li><p>通常作为方法参数<br><img src="/assests/blogImg/java1.png" alt="Java1"></p>
 </li>
-<li><p>下界通配范型<br><img src="/assets/blogImg/java2.png" alt="Java2"></p>
+<li><p>下界通配范型<br><img src="/assests/blogImg/java2.png" alt="Java2"></p>
 </li>
 <li><p>理解</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//现在看看通配泛型 ？ extends，注意右边的new ArrayList的类型参数必须是Fruit的子类型</span></span><br><span class="line"><span class="comment">//? extends Fruit指定了类型上限，因此下面的都成立：</span></span><br><span class="line">ArrayList&lt;? extends Fruit&gt; list1 = <span class="keyword">new</span> ArrayList&lt;Fruit&gt;(); <span class="comment">//=号右边，如果是Fruit，可以不写，等价于new ArrayList&lt;&gt;();</span></span><br><span class="line">ArrayList&lt;? extends Fruit&gt; list2 = <span class="keyword">new</span> ArrayList&lt;Apple&gt;();  <span class="comment">//=号右边，如果是Fruit的子类，则必须写</span></span><br><span class="line">ArrayList&lt;? extends Fruit&gt; list3 = <span class="keyword">new</span> ArrayList&lt;Jonathan&gt;(); <span class="comment">//=号右边，如果是Fruit的子类，则必须写</span></span><br><span class="line">ArrayList&lt;? extends Fruit&gt; list4 = <span class="keyword">new</span> ArrayList&lt;Orange&gt;();  <span class="comment">//=号右边，如果是Fruit的子类，则必须写</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ArrayList&lt;? extends Fruit&gt; list可指向ArrayList&lt;Fruit&gt;|ArrayList&lt;Apple&gt;|ArrayList&lt;Jonathan&gt;| ArrayList&lt;Orange&gt;|…</span></span><br><span class="line"><span class="comment">// 一个ArrayList&lt;Fruit&gt;容器可以加入Fruit、Apple、Jonathan、Orange，</span></span><br><span class="line"><span class="comment">// 一个ArrayList&lt;Apple&gt;容器可以加入Apple、Jonathan，</span></span><br><span class="line"><span class="comment">// 一个ArrayList&lt;Orange&gt;容器可以加入Orange，</span></span><br><span class="line"><span class="comment">// 假如当ArrayList&lt;? extends Fruit&gt; list为方法形参时，如果方法内部调list.add，</span></span><br><span class="line"><span class="comment">// 由于编译时，编译器无法知道ArrayList&lt;? extends Fruit&gt;类型的引用变量会指向哪一个具体容器类型，编译器无法知道该怎么处理add。</span></span><br><span class="line"><span class="comment">// 例如当add的对象类型是Orange，如果list指向ArrayList&lt;Apple&gt;，加不进去。但如果list指向为ArrayList&lt;Orange&gt;，就可以加进去。</span></span><br><span class="line"><span class="comment">// 为了安全，编译器干脆禁止ArrayList&lt;? extends Fruit&gt;类型的list添加元素。</span></span><br><span class="line"><span class="comment">// 但从list里get元素，都解释成Fruit类型</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//? super Fruit指定了类型下限，因此下面二行都成立</span></span><br><span class="line">ArrayList&lt;? <span class="keyword">super</span> Fruit&gt; list1 = <span class="keyword">new</span> ArrayList&lt;Fruit&gt;(); 	<span class="comment">//=号右边，这时Fruit可以省略，等价于new ArrayList&lt;&gt;();</span></span><br><span class="line">ArrayList&lt;? <span class="keyword">super</span> Fruit&gt; list2 = <span class="keyword">new</span> ArrayList&lt;Object&gt;(); 	<span class="comment">//允许。=号右边，如果是Fruit的父类，必须写出类型</span></span><br><span class="line"><span class="comment">//ArrayList&lt;? super Fruit&gt; list3 = new ArrayList&lt;Apple&gt;(); 	//但是不能指向Fruit子类的容器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 因此ArrayList&lt;? super Fruit&gt; list引用可以指向ArrayList&lt;Fruit&gt;|Fruit父类型的容器如ArrayList&lt;Object&gt;。</span></span><br><span class="line"><span class="comment">// 当ArrayList&lt;? extends Fruit&gt; list为方法形参时,编译器知道list指向的具体容器的类型参数至少是Fruit。当向list里add对象o时，分析几种可能的情况：</span></span><br><span class="line"><span class="comment">// 1 o是Fruit及其子类类型，这里面又分二种情况</span></span><br><span class="line"><span class="comment">//     1.1 ArrayList&lt;? extends Fruit&gt; list实际指向ArrayList&lt;Fruit&gt;，可以加入</span></span><br><span class="line"><span class="comment">//     1.2 ArrayList&lt;? extends Fruit&gt; list实际指向ArrayList&lt;Object&gt;,可以加入</span></span><br><span class="line"><span class="comment">// 2 o是Fruit的父类型如Object，这里面又分二种情况</span></span><br><span class="line"><span class="comment">//     2.1 ArrayList&lt;? extends Fruit&gt; list实际指向ArrayList&lt;Fruit&gt;，这时编译器不允许加入，Object不能转型为Fruit</span></span><br><span class="line"><span class="comment">//     2.2 ArrayList&lt;? extends Fruit&gt; list实际指向ArrayList&lt;Object&gt;，可以加入</span></span><br><span class="line"><span class="comment">// 综合以上四种情况，可以看到，只要对象o的类型是Fruit及其子类型，这时将对象o加入list一定是安全的（1.1, 1.2）；</span></span><br><span class="line"><span class="comment">// 如果对象是Fruit父类型，则不允许加入最安全（因为可能出现2.1的情况)。由于? super Fruit规定了list元素类型的下限，因此取元素时编译器只能全部解释成Object</span></span><br><span class="line"></span><br><span class="line">list1.add(<span class="keyword">new</span> Fruit()); list1.add(<span class="keyword">new</span> Apple()); list1.add(<span class="keyword">new</span> Jonathan());<span class="comment">//只要加入Fruit及其子类对象都OK</span></span><br><span class="line"><span class="comment">//list1.add(new Object()); //添加Fruit父类则编译器禁止，报错</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 取对象时都必须解释成Object类型。因此我们说带&lt;? super&gt;通配符的泛型类的get方法至少是部分失效</span></span><br><span class="line">Object o1 = list.get(<span class="number">0</span>);</span><br><span class="line"><span class="comment">//Fruit o2 = list.get(0);  //报错，Object不能赋给Fruit，需要强制类型转换，但是引入泛型就是想去掉强制类型转换</span></span><br></pre></td></tr></table></figure>
@@ -1445,7 +1445,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DataStructure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1457,23 +1473,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DataStructure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
             
             <div class="clearfix"></div>
