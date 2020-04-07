@@ -16,10 +16,10 @@
 <meta property="og:site_name" content="KJay的博客">
 <meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程   概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;07&#x2F;assests&#x2F;blogImg&#x2F;java1.png">
-<meta property="og:updated_time" content="2020-04-07T09:51:08.068Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;07&#x2F;images&#x2F;java1.png">
+<meta property="og:updated_time" content="2020-04-07T10:17:09.995Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;07&#x2F;assests&#x2F;blogImg&#x2F;java1.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;07&#x2F;images&#x2F;java1.png">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
   
@@ -1144,7 +1144,9 @@
 <li><p>数组的协变性：如果类A是类B的父类，那么A[]就是B[]的父类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fruit</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> <span class="keyword">extends</span> <span class="title">Fruit</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Jonathan</span> <span class="keyword">extends</span> <span class="title">Apple</span></span>&#123;&#125; <span class="comment">//一种苹果</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Orange</span> <span class="keyword">extends</span> <span class="title">Fruit</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//由于数组的协变性，可以把Apple[]类型的引用赋值给Friut[]类型的引用</span></span><br><span class="line">Fruit[] fruits = <span class="keyword">new</span> Apple[<span class="number">10</span>]; 		</span><br><span class="line">fruits[<span class="number">0</span>] = <span class="keyword">new</span> Apple();  </span><br><span class="line">fruits[<span class="number">1</span>] = <span class="keyword">new</span> Jonathan(); <span class="comment">// Jonathan是Apple的子类</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">//下面语句fruits的声明类型是Fruit因此编译通过，但运行时将Fruit转型为Apple错误</span></span><br><span class="line">    <span class="comment">//数组是在运行时才去判断数组元素的类型约束；</span></span><br><span class="line">    <span class="comment">//而泛型正好相反，在运行时，泛型的类型信息是会被擦除的，编译的时候去检查类型约束</span></span><br><span class="line">    fruits[<span class="number">2</span>] = <span class="keyword">new</span> Fruit();<span class="comment">//运行时抛出异常 java.lang.ArrayStoreException，这是数组协变性导致的问题</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">    System.out.println(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>范型容器讨论的是自身的类型，不是容器持有对象的类型</strong><br><img src="../assests/blogImg/java1.png" alt="Java1"></p>
+<li><p><strong>范型容器讨论的是自身的类型，不是容器持有对象的类型.</strong><br><img src="../images/java1.png" alt="Java1"></p>
+</li>
+<li><p>通常作为方法参数</p>
 </li>
 </ul>
 <hr>
@@ -1385,6 +1387,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
@@ -1397,7 +1403,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+                <a href="javascript:void(0)" class="js-tag color4">DataStructure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1405,15 +1415,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DataStructure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">cpp</a>
               </li>
             
             <div class="clearfix"></div>
