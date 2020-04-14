@@ -16,11 +16,12 @@
 <meta property="og:site_name" content="KJay的博客">
 <meta property="og:description" content="感谢翁恺老师和郑莉老师由于时间等原因， Java 课程不再安排郑老师的课程，而是采用本 HUST 的 PPT 课程，感谢课程组的老师，具体资料可见本人博客和 Github   本人博客翁恺老师的Java课程(上篇)翁恺老师的Java课程(下篇)郑莉老师Java课程   概述特征 最大的优势是 跨平台 纯面向对象 , 无全局变量和函数，所有定义均在 class 中 相对 C++ 简单很多，取消多重">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java3.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java1.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java2.png">
-<meta property="og:updated_time" content="2020-04-08T04:15:34.725Z">
+<meta property="og:updated_time" content="2020-04-08T13:33:02.510Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java1.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java3.png">
   
     <link rel="alternative" href="/atom.xml" title="KJay的博客" type="application/atom+xml">
   
@@ -767,9 +768,16 @@
 </li>
 <li><p>指父类的变量（实例变量、静态变量）和静态方法在子类被重新定义，但由于类的变量和静态方法没有多态性，因此通过父类型引用变量访问的一定是父类变量、静态方法(即被隐藏的可再发现)</p>
 </li>
+<li><p><strong>重载发生在编译时，编译时编译器根据实参比对重载方法的形参找到最合适的方法</strong></p>
+</li>
+<li><p><strong>多态发生在运行(Run time)时，运行时JVM根据变量所引用的对象的真正类型来找到最合适的实例方法</strong></p>
+</li>
+<li><p><strong>经过类型转换只是告诉编译器让它这样去解释，实际上的运行类型不会因此而改变</strong></p>
+</li>
 </ul>
 </li>
 </ul>
+<p><img src="http://q8g8m6zk5.bkt.clouddn.com/img/java3.png" alt="仔细理解"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">m</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"A's m"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">s</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"A's s"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="comment">//覆盖父类实例方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">m</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"B's m"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//隐藏父类静态方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">s</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"B's s"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OverrideDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        A o = <span class="keyword">new</span> B();  <span class="comment">//父类型变量引用子类对象</span></span><br><span class="line">        o.m();  <span class="comment">//由于父类实例方法m被子类覆盖，o运行时指向B类对象，由于多态性，执行的是B的m</span></span><br><span class="line">        o.s();    <span class="comment">//由于s是静态方法，没有多态性，编译器编译时对象o的声明类型是A，所以执行的是A的s</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//引用变量o有二个类型：声明类型A，实际运行时类型B</span></span><br><span class="line"><span class="comment">//判断o.s()执行的是哪个函数按照o的声明类型，因为静态函数s没有多态性，</span></span><br><span class="line"><span class="comment">//函数入口地址在编译时就确定（早期绑定），而编译时所有变量的类型都按声明类型。</span></span><br><span class="line"><span class="comment">//判断o.m()执行的是哪个函数按照o的实际运行类型，在运行时按照o指向的实际类型B来重新计算函数入口地址（晚期绑定。多态性），因此调用的是B的m</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 因此一旦引用变量o指向了B类型对象（A o = new B()），</span></span><br><span class="line"><span class="comment">// o.m()调用的永远是B的m，再也无法通过o调用A的m，哪怕</span></span><br><span class="line"><span class="comment">// 强制转换都不行： ((A)o).m();调用的还是B的m</span></span><br><span class="line"><span class="comment">// 这就是前面PPT所说的不能再发现。</span></span><br></pre></td></tr></table></figure>
 
 
@@ -1455,19 +1463,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">TODO</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">cpp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1480,6 +1488,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
              
               <li class="article-tag-list-item">
