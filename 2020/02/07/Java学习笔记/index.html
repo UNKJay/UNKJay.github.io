@@ -19,7 +19,9 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java3.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java1.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java2.png">
-<meta property="og:updated_time" content="2020-04-08T13:33:02.510Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java4.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java5.png">
+<meta property="og:updated_time" content="2020-04-20T23:28:12.955Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java3.png">
   
@@ -1214,9 +1216,13 @@
 </ul>
 <h2 id="对象工厂"><a href="#对象工厂" class="headerlink" title="对象工厂"></a>对象工厂</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObjectFactory</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Class&lt;T&gt; type;  </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ObjectFactory</span><span class="params">(Class&lt;T&gt; type)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.type = type;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">create</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		T o = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			o= type.newInstance();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InstantiationException | IllegalAccessException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> o;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;	</span><br><span class="line">		<span class="comment">//首先创建一个负责生产Car的对象工厂，传进去需要创建对象的类的Class信息	</span></span><br><span class="line">		ObjectFactory&lt;Car&gt; carFactory = <span class="keyword">new</span> ObjectFactory&lt;Car&gt;(Car.class);</span><br><span class="line">		Car o = carFactory.create();  <span class="comment">//由对象工厂负责产生car对象</span></span><br><span class="line">		System.out.println(carFactory.create().toString());	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String s = <span class="keyword">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Car</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		s = <span class="string">"Car"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> s;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
 <hr>
-
+<h1 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h1><ul>
+<li>本章不做笔记<br><img src="http://q8g8m6zk5.bkt.clouddn.com/img/java4.png" alt="java4"><br><img src="http://q8g8m6zk5.bkt.clouddn.com/img/java5.png" alt="java5"></li>
+</ul>
+<hr>
+<hr>
+<h1 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h1>
       
 
       
@@ -1475,19 +1481,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DataStructure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DataStructure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
