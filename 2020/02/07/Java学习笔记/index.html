@@ -21,7 +21,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java2.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java4.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java5.png">
-<meta property="og:updated_time" content="2020-04-20T23:28:12.955Z">
+<meta property="og:updated_time" content="2020-04-21T03:23:58.315Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;q8g8m6zk5.bkt.clouddn.com&#x2F;img&#x2F;java3.png">
   
@@ -1222,7 +1222,73 @@
 </ul>
 <hr>
 <hr>
-<h1 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h1>
+<h1 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h1><ul>
+<li><p>内部类也称为嵌套类，是在一个类的内部定义的类。通常一个内部类仅被其外部类使用时,同时也不想暴露出去，才定义为内部类。内部类不能定义在方法中。</p>
+</li>
+<li><p>分为实例内部类和静态内部类</p>
+</li>
+<li><p>实例内部类内部不允许定义静态成员。创建实例内部类的对象时需要使用 外部类的实例变量.new 实例内部类类名()。(即只有当有了外部类的实例，才能实例化 实例内部类的对象）</p>
+</li>
+<li><p>静态内部类用 static 定义，其内部允许定义实例成员和静态成员。</p>
+</li>
+<li><p>静态内部类的方法不能访问外部类的实例成员变量。</p>
+</li>
+<li><p>创建静态内部类的对象时需要使用new 外部类.静态内部类()</p>
+</li>
+<li><p>demo</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wrapper</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> x=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> z = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//内部静态类</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> y=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">//可以定义静态成员,</span></span><br><span class="line">        <span class="comment">//不能访问外部类的实例成员x，可访问外部类静态成员z</span></span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">int</span> q=<span class="number">0</span>;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">g</span><span class="params">()</span> </span>&#123;  <span class="keyword">return</span> ++q + ++y + ++z; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//内部实例类,不能定义静态成员，</span></span><br><span class="line">    <span class="comment">//内部实例类可访问外部类的静态成员如z，实例成员如x</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> y=<span class="number">0</span>;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">g</span><span class="params">( )</span> </span>&#123;</span><br><span class="line">            x++; y++;z++;</span><br><span class="line">            <span class="keyword">return</span> x+y;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> x;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Wrapper w = <span class="keyword">new</span> Wrapper();  <span class="comment">//w.x = 0;</span></span><br><span class="line">        <span class="comment">//创建内部静态类实例</span></span><br><span class="line">        Wrapper.A a = <span class="keyword">new</span> Wrapper.A(); 	<span class="comment">//a.y=0, a.q=0;</span></span><br><span class="line">        Wrapper.A b = <span class="keyword">new</span> Wrapper.A();	 <span class="comment">//b.y=0, b.q=0;</span></span><br><span class="line">        a.g();</span><br><span class="line">        <span class="comment">//a, b的实例成员彼此无关，因此执行完a.g()后，a.y = 1, b.y = 0;</span></span><br><span class="line">        <span class="comment">//a, b共享静态成员q，所以a.q=b.q = 1;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//创建内部实例类实例</span></span><br><span class="line">        <span class="comment">//不能用new Wrapper.B(); 必须通过外部类对象去实例化实例内部类对象</span></span><br><span class="line">        Wrapper.B  c = w.new B(); <span class="comment">//类型声明还是外部类.内部实例类</span></span><br><span class="line">        <span class="comment">//c.y=0;</span></span><br><span class="line">        c.g(); <span class="comment">//c.y = 1 ,c.gextX() = 1</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//在外部类体外面，不能通过内部类对象访问外部类成员，外部类成员只能在内部</span></span><br><span class="line">        <span class="comment">//类里面访问，编译器在这里只能看到内部类成员</span></span><br><span class="line"><span class="comment">//        System.out.println(a.z); //错误</span></span><br><span class="line"><span class="comment">//        System.out.println(c.x); //错误</span></span><br><span class="line">        <span class="comment">//不能通过c直接访问外部类的x，可通过c.gextX()</span></span><br><span class="line">        System.out.println(c.getX());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>作用：如果一个类A仅仅被某一个类B使用，且A无需暴露出去，可以把A作为B的内部类实现，内部类也可以避免名字冲突：因为外部类多了一层名字空间的限定。例如类Wrapper1、Wrapper2可以定义同名的内部类A而不会导致冲突</p>
+</li>
+</ul>
+<h2 id="匿名"><a href="#匿名" class="headerlink" title="匿名"></a>匿名</h2><ul>
+<li><p>匿名内部类使用父类或者接口代替匿名类</p>
+</li>
+<li><p>demo</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HandleWindowEvent</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//其它代码省略</span></span><br><span class="line">        primaryStage.setOnCloseRequest(</span><br><span class="line">	<span class="keyword">new</span> WindowEventHandlerClass () );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">WindowEventHandlerClass</span> <span class="keyword">implements</span> </span></span><br><span class="line"><span class="class">	<span class="title">EventHandler</span>&lt;<span class="title">WindowEvent</span>&gt; </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handle</span><span class="params">(WindowEvent e)</span> </span>&#123; <span class="comment">//处理语句 &#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HandleWindowEvent</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//其它代码省略</span></span><br><span class="line">        primaryStage.setOnCloseRequest(</span><br><span class="line">                <span class="keyword">new</span>  EventHandler&lt;WindowEvent&gt;() &#123;</span><br><span class="line">                       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handle</span><span class="params">(WindowEvent e)</span> </span>&#123; <span class="comment">//处理语句 &#125;</span></span><br><span class="line">                &#125;	</span><br><span class="line">        );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>匿名内部类总是使用父类的无参构造方法产生实例，对于接口使用Object()</p>
+</li>
+<li><p>匿名内部类必须实现父类或者接口的所有抽象方法。事件处理接口通常只有1个方法</p>
+</li>
+<li><p>一个匿名内部类被编译成OuterClassName$n.class,如Test$1.class, Test$2.class</p>
+</li>
+</ul>
+<hr>
+<h1 id="Lambda-表达式"><a href="#Lambda-表达式" class="headerlink" title="Lambda 表达式"></a>Lambda 表达式</h1><ul>
+<li><p>EventHandler接口只有一个方法，只有一个方法的接口称为功能接口（函数式接口），每个 Lambda 表达式都能隐式地赋值给函数式接口，lamda表达式中的{}就是函数式接口中接口方法的方法体</p>
+</li>
+<li><p>lambda 表达式只能赋值给函数式接口</p>
+</li>
+<li><p>语法</p>
+<ul>
+<li>（type1 para1, …, typen paran)-&gt;expression  </li>
+<li>（type1 para1, …, typen paran)-&gt;{一条或多条语句}</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">int</span> a, <span class="keyword">int</span> b) -&gt; &#123; <span class="keyword">return</span> a + b; &#125; </span><br><span class="line">() -&gt; System.out.println(<span class="string">"Hello World"</span>)</span><br><span class="line"> (String s) -&gt; &#123; System.out.println(s); &#125;</span><br><span class="line"> () -&gt; <span class="number">42</span></span><br><span class="line"> () -&gt; &#123; <span class="keyword">return</span> <span class="number">3.1415</span> ;&#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 注意表达式不带 ;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>当把Lambda表达式赋值给函数式接口时， Lambda表达式的参数的类型是可以推断的；如果只有一个参数，则可以省略圆括弧。从而使Lambda表达式简化为</p>
+<ul>
+<li>e-&gt;处理e的expression</li>
+<li>e-&gt;{ 处理e的statements;}</li>
+</ul>
+</li>
+<li><p>demo</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个函数式接口 </span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WorkerInterface</span> </span>&#123; </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomeWork</span><span class="params">()</span></span>; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WorkerInterfaceTest</span> </span>&#123; </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exec</span><span class="params">(WorkerInterface worker)</span> </span>&#123; </span><br><span class="line">		worker.doSomeWork(); </span><br><span class="line">	&#125; </span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> </span>&#123; </span><br><span class="line">		<span class="comment">//invoke doSomeWork using Annonymous class </span></span><br><span class="line">		exec( <span class="keyword">new</span> WorkerInterface() &#123; </span><br><span class="line">			<span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomeWork</span><span class="params">()</span> </span>&#123; </span><br><span class="line">			System.out.println(<span class="string">"Worker invoked using Anonymous class"</span>); &#125; </span><br><span class="line">		&#125; ); </span><br><span class="line">		<span class="comment">//invoke doSomeWork using Lambda expression </span></span><br><span class="line">		exec( () -&gt; System.out.println(<span class="string">"Worker invoked using Lambda expression"</span>) ); </span><br><span class="line">	&#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>another demo</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LamdaHandlerDemo</span> <span class="keyword">extends</span> <span class="title">Application</span></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		HBox hBox = <span class="keyword">new</span> HBox();</span><br><span class="line">		hBox.setSpacing(<span class="number">10.0</span>);</span><br><span class="line">		hBox.setAlignment(Pos.CENTER);</span><br><span class="line">		Button btNew = <span class="keyword">new</span> Button(<span class="string">"New"</span>);Button btOPen = <span class="keyword">new</span> Button(<span class="string">"Open"</span>);</span><br><span class="line">		Button btSave = <span class="keyword">new</span> Button(<span class="string">"Save"</span>);Button btPrint = <span class="keyword">new</span> Button(<span class="string">"Print"</span>);</span><br><span class="line">		hBox.getChildren().addAll(btNew,btOPen,btSave,btPrint);</span><br><span class="line"></span><br><span class="line">		btNew.setOnAction( (ActionEvent e)-&gt;&#123; System.out.println(<span class="string">"Process New"</span>); &#125; );</span><br><span class="line">		btOPen.setOnAction( (e)-&gt;&#123;System.out.println(<span class="string">"Process Open"</span>);&#125; ) ; </span><br><span class="line">		btSave.setOnAction( e-&gt;&#123;System.out.println(<span class="string">"Process Save"</span>);&#125; ); <span class="comment">//-&gt;右边是Statements</span></span><br><span class="line">		btPrint.setOnAction( e-&gt;System.out.println(<span class="string">"Process Print"</span>) ); <span class="comment">//-&gt;右边是expression</span></span><br><span class="line"></span><br><span class="line">		Scene secen = <span class="keyword">new</span> Scene(hBox,<span class="number">300</span>,<span class="number">50</span>);</span><br><span class="line">		primaryStage.setTitle(<span class="string">"LamdaHandlerDemo"</span>);</span><br><span class="line">		primaryStage.setScene(secen);</span><br><span class="line">		primaryStage.show();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>MapReduce</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Old way: </span></span><br><span class="line">List&lt;Integer&gt; list = Arrays.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>); </span><br><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>; </span><br><span class="line"><span class="keyword">for</span>(Integer n : list) &#123; </span><br><span class="line">	<span class="keyword">int</span> x = n * n; </span><br><span class="line">	sum = sum + x;</span><br><span class="line"> &#125; </span><br><span class="line">System.out.println(sum); </span><br><span class="line"></span><br><span class="line"><span class="comment">//New way: </span></span><br><span class="line">List&lt;Integer&gt; list = Arrays.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>);</span><br><span class="line"> <span class="keyword">int</span> sum = list.stream().map(x -&gt; x*x).reduce((x,y) -&gt; x + y).get(); </span><br><span class="line">System.out.println(sum);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<hr>
+
       
 
       
@@ -1469,7 +1535,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">TODO</a>
+                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1481,11 +1547,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1494,10 +1560,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OS</a>
               </li>
              
               <li class="article-tag-list-item">
